@@ -15,7 +15,7 @@ import javax.validation.Valid
 @RestController
 @PreAuthorize("hasRole('ADMIN')")
 class RedeemCodeController(private val redeemCodeService: RedeemCodeService) {
-    @PostMapping("/admin/giftcards")
+    @PostMapping("/admin/redeemcodes")
     fun issueRedeemCode(@RequestBody @Valid request: RedeemCodeIssueRequest): ResponseEntity<SingleResponse<RedeemCodeIssuedViewModel>> {
         val redeemCode = redeemCodeService.issueRedeemCode(request.toValue())
 

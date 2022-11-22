@@ -1,0 +1,10 @@
+### admin atreus/1234 issue redeem code
+POST http://localhost:8080/admin/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}

@@ -27,8 +27,9 @@ class SecurityConfig {
             .httpBasic()
             .and()
             .headers().frameOptions().disable()
+            .and()
+            .csrf().disable()
 //        httpSecurity.httpBasic().disable()
-//            .csrf().disable()
 //
 //            .headers().frameOptions().disable() // h2 console 접속 용도
 
