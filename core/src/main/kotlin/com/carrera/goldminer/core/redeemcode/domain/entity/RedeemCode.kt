@@ -11,6 +11,7 @@ class RedeemCode(
     val includedGold: Gold,
     val expiredBy: ZonedDateTime,
     val redeemed: Boolean = false,
+    val version: Long? = null,
 ) {
     private fun copy(
         id: Long = this.id,
@@ -18,12 +19,14 @@ class RedeemCode(
         gold: Gold = this.includedGold,
         expiredBy: ZonedDateTime = this.expiredBy,
         redeemed: Boolean = this.redeemed,
+        version: Long? = this.version,
     ) = RedeemCode(
         id,
         code,
         gold,
         expiredBy,
-        redeemed
+        redeemed,
+        version
     )
 
     fun redeem(userId: Long): RedeemingResult {

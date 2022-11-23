@@ -15,7 +15,7 @@ class ChargingGoldWithCodeTest : BehaviorSpec({
         val value = ChargingValue(code, userId)
         val goldLedgerRepository = FakeGoldLedgerRepository()
         val redeemCodeRepository = FakeRedeemCodeRepository()
-        val redeemCode = redeemCodeRepository.findValidOneByCode(code)
+        val redeemCode = redeemCodeRepository.findValidOneByCodeWithLock(code)
         val beforeGoldAmount = goldLedgerRepository.findValidOneByUserIdOrderByExpired(userId).usableAmountOf()
         When("충전하면") {
             val result = ChargingGoldWithCode(

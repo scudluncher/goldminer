@@ -11,11 +11,10 @@ class ChargingGoldWithCode(
     private val redeemCodeRepository: RedeemCodeRepository,
 ) {
     fun execute(): GoldLedger {
-        val redeemCode = redeemCodeRepository.findValidOneByCode(value.code)
+        val redeemCode = redeemCodeRepository.findValidOneByCodeWithLock(value.code)
             ?: throw InvalidRedeemCodeException()
 
         val redeemingResult = redeemCode.redeem(value.userId)
-
         redeemCodeRepository.save(redeemingResult.consumedCode)
 
         return goldLedgerRepository.save(redeemingResult.newLedger)

@@ -4,10 +4,7 @@ import com.carrera.goldminer.core.common.infra.JpaEntity
 import com.carrera.goldminer.core.goldledger.domain.value.Gold
 import com.carrera.goldminer.core.redeemcode.domain.entity.RedeemCode
 import java.time.ZonedDateTime
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity(name = "redeem_code")
 class RedeemCodeJpaEntity(
@@ -20,7 +17,9 @@ class RedeemCodeJpaEntity(
     var goldExpiredBy: ZonedDateTime,
     var expiredBy: ZonedDateTime,
     var redeemed: Boolean,
-    //todo version?
+
+    @Version
+    var version: Long? = null,
 ) : JpaEntity<RedeemCode> {
     constructor(redeemCode: RedeemCode) : this(
         redeemCode.id,
@@ -28,7 +27,8 @@ class RedeemCodeJpaEntity(
         redeemCode.includedGold.amount,
         redeemCode.includedGold.expiredBy,
         redeemCode.expiredBy,
-        redeemCode.redeemed
+        redeemCode.redeemed,
+        redeemCode.version
     )
 
     override fun update(domainEntity: RedeemCode) {
@@ -41,7 +41,8 @@ class RedeemCodeJpaEntity(
             code,
             Gold(gold, goldExpiredBy),
             expiredBy,
-            redeemed
+            redeemed,
+            version
         )
     }
 }

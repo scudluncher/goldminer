@@ -33,7 +33,7 @@ class RedeemCodeController(
         checkExistingUser(request.userId)
         checkUserOneSelf(request.userId)
 
-        val addedGold = redeemCodeService.topUpGoldWithCode(request.toValue())
+        val addedGold = redeemCodeService.chargeGoldWithCode(request.toValue())
         val currentGold = goldLedgerService.currentGoldOf(request.userId)
 
         return ResponseEntity(

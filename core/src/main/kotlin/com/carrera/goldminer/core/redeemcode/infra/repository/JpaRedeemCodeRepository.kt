@@ -4,9 +4,11 @@ import com.carrera.goldminer.core.redeemcode.domain.entity.RedeemCode
 import com.carrera.goldminer.core.redeemcode.domain.repository.RedeemCodeRepository
 import com.carrera.goldminer.core.redeemcode.infra.entity.RedeemCodeJpaEntity
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Lock
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 import java.time.ZonedDateTime
+import javax.persistence.LockModeType
 
 @Repository
 class JpaRedeemCodeRepository(private val crudRepository: JpaCrudRedeemCodeRepository) :
@@ -21,7 +23,7 @@ class JpaRedeemCodeRepository(private val crudRepository: JpaCrudRedeemCodeRepos
             .toDomainEntity()
     }
 
-    override fun findValidOneByCode(code: String): RedeemCode? {
+    override fun findValidOneByCodeWithLock(code: String): RedeemCode? {
         return crudRepository.findByCodeAndRedeemedAndExpiredByAfter(code)
             ?.toDomainEntity()
     }
@@ -30,6 +32,11 @@ class JpaRedeemCodeRepository(private val crudRepository: JpaCrudRedeemCodeRepos
 @Component
 interface JpaCrudRedeemCodeRepository : JpaRepository<RedeemCodeJpaEntity, Long> {
     fun findByCode(code: String): RedeemCodeJpaEntity?
-//    fun findByCodeAndRedeemed(code: String, redeemed: Boolean): RedeemCodeJpaEntity?
-    fun findByCodeAndRedeemedAndExpiredByAfter(code:String, redeemed: Boolean = false, expiredBy:ZonedDateTime = ZonedDateTime.now()) : RedeemCodeJpaEntity?
+
+    @Lock(LockModeType.OPTIMISTIC)
+    fun findByCodeAndRedeemedAndExpiredByAfter(
+        code: String,
+        redeemed: Boolean = false,
+        expiredBy: ZonedDateTime = ZonedDateTime.now(),
+    ): RedeemCodeJpaEntity?
 }

@@ -15,7 +15,7 @@ class RedeemCodeIssuing(
         val redeemCode = RedeemCode(
             code = code,
             includedGold = Gold(value.amount, value.goldExpiredBy),
-            expiredBy = value.codeExpiredBy
+            expiredBy = value.codeExpiredBy,
         )
 
         return redeemCodeRepository.save(redeemCode)

@@ -7,9 +7,7 @@ import java.time.ZonedDateTime
 interface RedeemCodeRepository {
     fun findByCode(code: String): RedeemCode?
     fun save(redeemCode: RedeemCode): RedeemCode
-//    fun findByCodeAndRedeemed(code: String, redeemed: Boolean): RedeemCode? // todo() no usage so far?
-
-    fun findValidOneByCode(code: String): RedeemCode?
+    fun findValidOneByCodeWithLock(code: String): RedeemCode?
 }
 
 class FakeRedeemCodeRepository : RedeemCodeRepository {
@@ -24,7 +22,8 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
                 redeemCode.code,
                 redeemCode.includedGold,
                 redeemCode.expiredBy,
-                redeemCode.redeemed
+                redeemCode.redeemed,
+                redeemCode.version
             )
             redeemCodes.add(newRedeemCode)
 
@@ -37,7 +36,7 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
         }
     }
 
-    override fun findValidOneByCode(code: String): RedeemCode? {
+    override fun findValidOneByCodeWithLock(code: String): RedeemCode? {
         return redeemCodes.firstOrNull { it.code == code && !it.redeemed && it.expiredBy.isAfter(ZonedDateTime.now()) }
     }
 
