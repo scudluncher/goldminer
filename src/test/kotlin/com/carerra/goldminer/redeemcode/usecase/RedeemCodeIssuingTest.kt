@@ -19,7 +19,7 @@ class RedeemCodeIssuingTest : BehaviorSpec({
     given("redeem code 생성 값이 주어지고") {
         val monthLater = ZonedDateTime.now().plusDays(30L)
         val weekLater = ZonedDateTime.now().plusWeeks(1L)
-        val goldAmount = 100UL
+        val goldAmount = 100L
         val redeemCodeIssueValue = RedeemCodeIssueValue(
             goldAmount,
             monthLater,

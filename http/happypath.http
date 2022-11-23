@@ -5,6 +5,29 @@ Content-Type: application/json
 
 {
   "amount": 10000,
-  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "goldExpiredBy": "2023-12-31T10:15:30+01:00",
   "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+
+### admin atreus/1234 issue redeem code, 금 만기일이 리딤코드 만기일보다 앞설 때
+POST http://localhost:8080/admin/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-15T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+### admin atreus/1234 issue redeem code, 만기일이 현재보다 이전일 때
+POST http://localhost:8080/admin/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2021-12-15T10:15:30+01:00",
+  "codeExpiredBy": "2021-12-31T10:15:30+01:00"
 }

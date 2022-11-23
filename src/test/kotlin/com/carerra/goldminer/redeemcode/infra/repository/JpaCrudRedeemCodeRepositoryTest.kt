@@ -26,7 +26,7 @@ class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
             RedeemCodeJpaEntity(
                 0L,
                 "7K2J77US6V",
-                100UL,
+                100,
                 aMonthLater,
                 aWeekLater,
                 false
@@ -34,7 +34,7 @@ class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
             RedeemCodeJpaEntity(
                 0L,
                 "051CESFOYF",
-                500UL,
+                500,
                 aMonthLater,
                 aWeekLater,
                 false
@@ -42,7 +42,7 @@ class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
             RedeemCodeJpaEntity(
                 0L,
                 "R1VQPB43RQ",
-                1000UL,
+                1000,
                 aWeekLater,
                 aWeekLater,
                 true
@@ -50,7 +50,7 @@ class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
             RedeemCodeJpaEntity(
                 0L,
                 "2BTQEAYUKN",
-                150UL,
+                150,
                 aWeekBefore,
                 aWeekBefore,
                 false
@@ -58,7 +58,7 @@ class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
             RedeemCodeJpaEntity(
                 0L,
                 "NINQM6XEHY",
-                300UL,
+                300,
                 aWeekBefore,
                 aWeekBefore,
                 true

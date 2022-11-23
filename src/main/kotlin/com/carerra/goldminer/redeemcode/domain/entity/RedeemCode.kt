@@ -1,6 +1,6 @@
 package com.carerra.goldminer.redeemcode.domain.entity
 
-import com.carerra.goldminer.goldchange.domain.entity.Gold
+import com.carerra.goldminer.goldchange.domain.value.Gold
 import java.time.ZonedDateTime
 
 class RedeemCode(

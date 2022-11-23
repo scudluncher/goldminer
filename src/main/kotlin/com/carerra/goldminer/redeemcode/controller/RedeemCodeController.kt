@@ -20,8 +20,7 @@ class RedeemCodeController(private val redeemCodeService: RedeemCodeService) {
         val redeemCode = redeemCodeService.issueRedeemCode(request.toValue())
 
         return ResponseEntity(
-            SingleResponse.Ok(RedeemCodeIssuedViewModel(redeemCode))
-            , HttpStatus.CREATED
+            SingleResponse.Ok(RedeemCodeIssuedViewModel(redeemCode)), HttpStatus.CREATED
         )
     }
 }

@@ -5,7 +5,7 @@ import java.time.ZonedDateTime
 
 class RedeemCodeIssuedViewModel(
     private val code: String,
-    private val goldAmount: ULong,
+    private val goldAmount: Long,
     private val goldExpiredBy: ZonedDateTime,
     private val codeExpiredBy: ZonedDateTime,
 ) {

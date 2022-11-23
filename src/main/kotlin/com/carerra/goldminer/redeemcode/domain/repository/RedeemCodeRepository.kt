@@ -1,6 +1,6 @@
 package com.carerra.goldminer.redeemcode.domain.repository
 
-import com.carerra.goldminer.goldchange.domain.entity.Gold
+import com.carerra.goldminer.goldchange.domain.value.Gold
 import com.carerra.goldminer.redeemcode.domain.entity.RedeemCode
 import java.time.ZonedDateTime
 
@@ -43,28 +43,28 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
     private val aMonthLater = ZonedDateTime.now().plusMonths(1)
     private val aWeekLater = ZonedDateTime.now().plusWeeks(1)
 
-    private val redeemCodes: MutableList<RedeemCode> = mutableListOf(
+    private val redeemCodes = mutableListOf(
         RedeemCode(
             1,
             "7K2J77US6V",
-            Gold(100UL, aMonthLater),
+            Gold(100, aMonthLater),
             aMonthLater
         ),
         RedeemCode(
             2,
             "R1VQPB43RQ",
-            Gold(200UL, aMonthLater),
+            Gold(200, aMonthLater),
             aMonthLater
         ),
         RedeemCode(
             3,
             "2BTQEAYUKN",
-            Gold(300UL, aWeekLater),
+            Gold(300, aWeekLater),
             aWeekLater
         ), RedeemCode(
             4,
             "DN10U2KVLR",
-            Gold(400UL, aMonthLater),
+            Gold(400, aMonthLater),
             aWeekLater
         )
     )

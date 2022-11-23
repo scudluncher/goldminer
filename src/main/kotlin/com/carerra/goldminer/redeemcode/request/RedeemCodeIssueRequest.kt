@@ -8,7 +8,7 @@ import javax.validation.constraints.Positive
 
 class RedeemCodeIssueRequest(
     @field:Positive
-    private val amount: ULong,
+    private val amount: Long,
     @field:Future
     private val goldExpiredBy: ZonedDateTime,
     @field:Future
@@ -16,7 +16,7 @@ class RedeemCodeIssueRequest(
 ) {
     fun toValue(): RedeemCodeIssueValue {
         if (goldExpiredBy.isBefore(codeExpiredBy)) {
-            throw BadRequestException() // TODO enum type ?
+            throw BadRequestException("금 만기일은 리딤코드 만기일보다 뒤여야 합니다.")
         }
         return RedeemCodeIssueValue(
             amount,

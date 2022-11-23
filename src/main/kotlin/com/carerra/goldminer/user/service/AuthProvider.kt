@@ -1,6 +1,5 @@
 package com.carerra.goldminer.user.service
 
-import com.carerra.goldminer.user.domain.value.UserType
 import com.carerra.goldminer.user.exception.UserNotFoundException
 import com.carerra.goldminer.user.exception.WrongPasswordException
 import org.springframework.security.authentication.AuthenticationProvider
