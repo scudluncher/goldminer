@@ -7,8 +7,9 @@ import java.time.ZonedDateTime
 interface RedeemCodeRepository {
     fun findByCode(code: String): RedeemCode?
     fun save(redeemCode: RedeemCode): RedeemCode
-    fun findByCodeAndRedeemed(code: String, redeemed: Boolean): RedeemCode?
-    //todo fun findWithPagination
+//    fun findByCodeAndRedeemed(code: String, redeemed: Boolean): RedeemCode? // todo() no usage so far?
+
+    fun findValidOneByCode(code: String): RedeemCode?
 }
 
 class FakeRedeemCodeRepository : RedeemCodeRepository {
@@ -21,7 +22,7 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
             val newRedeemCode = RedeemCode(
                 (redeemCodes.maxOfOrNull { it.id } ?: 0) + 1,
                 redeemCode.code,
-                redeemCode.gold,
+                redeemCode.includedGold,
                 redeemCode.expiredBy,
                 redeemCode.redeemed
             )
@@ -36,36 +37,51 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
         }
     }
 
-    override fun findByCodeAndRedeemed(code: String, redeemed: Boolean): RedeemCode? {
-        return redeemCodes.firstOrNull { it.code == code && it.redeemed == redeemed }
+    override fun findValidOneByCode(code: String): RedeemCode? {
+        return redeemCodes.firstOrNull { it.code == code && !it.redeemed && it.expiredBy.isAfter(ZonedDateTime.now()) }
     }
 
     private val aMonthLater = ZonedDateTime.now().plusMonths(1)
     private val aWeekLater = ZonedDateTime.now().plusWeeks(1)
+    private val aWeekBefore = ZonedDateTime.now().minusWeeks(1)
 
     private val redeemCodes = mutableListOf(
         RedeemCode(
-            1,
-            "7K2J77US6V",
-            Gold(100, aMonthLater),
-            aMonthLater
+            id = 1,
+            code = "7K2J77US6V",
+            includedGold = Gold(100, aMonthLater),
+            expiredBy = aMonthLater
         ),
         RedeemCode(
-            2,
-            "R1VQPB43RQ",
-            Gold(200, aMonthLater),
-            aMonthLater
+            id = 2,
+            code = "R1VQPB43RQ",
+            includedGold = Gold(200, aMonthLater),
+            expiredBy = aMonthLater
         ),
         RedeemCode(
-            3,
-            "2BTQEAYUKN",
-            Gold(300, aWeekLater),
-            aWeekLater
-        ), RedeemCode(
-            4,
-            "DN10U2KVLR",
-            Gold(400, aMonthLater),
-            aWeekLater
+            id = 3,
+            code = "2BTQEAYUKN",
+            includedGold = Gold(300, aWeekLater),
+            expiredBy = aWeekLater
+        ),
+        RedeemCode(
+            id = 4,
+            code = "DN10U2KVLR",
+            includedGold = Gold(400, aMonthLater),
+            expiredBy = aWeekLater
+        ),
+        RedeemCode(
+            id = 5,
+            code = "INVALID842",
+            includedGold = Gold(400, aWeekBefore),
+            expiredBy = aWeekBefore
+        ),
+        RedeemCode(
+            id = 5,
+            code = "A4TV7TGBH3",
+            includedGold = Gold(400, aWeekBefore),
+            expiredBy = aWeekBefore,
+            redeemed = true
         )
     )
 }

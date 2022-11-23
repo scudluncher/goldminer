@@ -11,7 +11,7 @@ class ConsumingGold(
 ) {
     fun execute(): GoldAmount {
         val validGoldLedgers =
-            goldLedgerRepository.findByOwnerIdAndGoldNotExpiredAndNotAllConsumedOrderByExpiredBy(request.ownerId)
+            goldLedgerRepository.findValidOneByUserIdOrderByExpired(request.ownerId)
 
         val usableGoldAmount = validGoldLedgers.usableAmountOf()
 

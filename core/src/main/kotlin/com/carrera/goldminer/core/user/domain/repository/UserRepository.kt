@@ -6,6 +6,7 @@ import com.carrera.goldminer.core.user.domain.value.UserType
 interface UserRepository {
     fun findByName(userName: String): User?
     fun save(user: User): User
+    fun findById(id: Long): User?
 }
 
 class FakeUserRepository : UserRepository {
@@ -57,5 +58,9 @@ class FakeUserRepository : UserRepository {
 
             return user
         }
+    }
+
+    override fun findById(id: Long): User? {
+        return users.firstOrNull { it.id == id }
     }
 }

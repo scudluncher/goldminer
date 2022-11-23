@@ -10,4 +10,8 @@ class UserService(private val userRepository: UserRepository) {
     fun findUserByName(userName: String): User? {
         return userRepository.findByName(userName)
     }
+
+    fun findByUserId(id:Long): User? {
+        return userRepository.findById(id)
+    }
 }

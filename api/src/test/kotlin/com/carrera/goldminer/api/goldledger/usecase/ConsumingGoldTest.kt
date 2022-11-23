@@ -17,7 +17,7 @@ class ConsumingGoldTest : BehaviorSpec({
                 result.amount shouldBe 0
 
                 val validGoldLedgers =
-                    goldLedgerRepository.findByOwnerIdAndGoldNotExpiredAndNotAllConsumedOrderByExpiredBy(ownerId)
+                    goldLedgerRepository.findValidOneByUserIdOrderByExpired(ownerId)
 
                 validGoldLedgers.size shouldBe 0
             }
@@ -44,7 +44,7 @@ class ConsumingGoldTest : BehaviorSpec({
                 result.amount shouldBe 5000
 
                 val validGoldLedgers =
-                    goldLedgerRepository.findByOwnerIdAndGoldNotExpiredAndNotAllConsumedOrderByExpiredBy(ownerId)
+                    goldLedgerRepository.findValidOneByUserIdOrderByExpired(ownerId)
 
                 validGoldLedgers.size shouldNotBe 0
                 validGoldLedgers.first().chargedGold.amount shouldNotBe validGoldLedgers.first().usedGold.amount

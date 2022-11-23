@@ -17,7 +17,7 @@ class JpaGoldLedgerRepository(private val crudRepository: JpaCrudGoldLedgerRepos
             .toDomainEntity()
     }
 
-    override fun findByOwnerIdAndGoldNotExpiredAndNotAllConsumedOrderByExpiredBy(ownerId: Long): List<GoldLedger> {
+    override fun findValidOneByUserIdOrderByExpired(ownerId: Long): List<GoldLedger> {
         return crudRepository.findByOwnerIdAndGoldNotExpiredAndNotAllConsumedOrderByExpiredBy(
             ownerId,
             ZonedDateTime.now()

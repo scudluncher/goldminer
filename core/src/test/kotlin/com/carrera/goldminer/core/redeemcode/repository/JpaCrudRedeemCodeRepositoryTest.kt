@@ -5,7 +5,9 @@ import com.carrera.goldminer.core.redeemcode.infra.repository.JpaCrudRedeemCodeR
 import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.extensions.spring.SpringExtension
+import io.kotest.matchers.date.shouldBeAfter
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import java.time.ZonedDateTime
@@ -24,44 +26,44 @@ class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
     override suspend fun beforeSpec(spec: Spec) {
         val jpaRedeemCodes = listOf(
             RedeemCodeJpaEntity(
-                0L,
-                "7K2J77US6V",
-                100,
-                aMonthLater,
-                aWeekLater,
-                false
+                id = 0L,
+                code = "7K2J77US6V",
+                gold = 100,
+                goldExpiredBy = aMonthLater,
+                expiredBy = aWeekLater,
+                redeemed = false
             ),
             RedeemCodeJpaEntity(
-                0L,
-                "051CESFOYF",
-                500,
-                aMonthLater,
-                aWeekLater,
-                false
+                id = 0L,
+                code = "051CESFOYF",
+                gold = 500,
+                goldExpiredBy = aMonthLater,
+                expiredBy = aWeekLater,
+                redeemed = false
             ),
             RedeemCodeJpaEntity(
-                0L,
-                "R1VQPB43RQ",
-                1000,
-                aWeekLater,
-                aWeekLater,
-                true
+                id = 0L,
+                code = "R1VQPB43RQ",
+                gold = 1000,
+                goldExpiredBy = aWeekLater,
+                expiredBy = aWeekLater,
+                redeemed = true
             ),
             RedeemCodeJpaEntity(
-                0L,
-                "2BTQEAYUKN",
-                150,
-                aWeekBefore,
-                aWeekBefore,
-                false
+                id = 0L,
+                code = "2BTQEAYUKN",
+                gold = 150,
+                goldExpiredBy = aWeekBefore,
+                expiredBy = aWeekBefore,
+                redeemed = false
             ),
             RedeemCodeJpaEntity(
-                0L,
-                "NINQM6XEHY",
-                300,
-                aWeekBefore,
-                aWeekBefore,
-                true
+                id = 0L,
+                code = "NINQM6XEHY",
+                gold = 300,
+                goldExpiredBy = aWeekBefore,
+                expiredBy = aWeekBefore,
+                redeemed = true
             ),
         )
 
@@ -73,7 +75,7 @@ class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
             val code = "NINQM6XEHY"
             When("검색하면") {
                 val result = jpaRedeemCodeRepository.findByCode(code)
-                then("조건의 리딤 코드가 검색된다") {
+                then("동일한 코드명의 리딤 코드가 검색된다.") {
                     result?.code shouldBe code
                 }
             }
@@ -89,14 +91,26 @@ class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
             }
         }
 
-        this.given("발행된 코드와 사용여부 값이 주어지고") {
-            val code = "R1VQPB43RQ"
-            val redeemed = true
+        this.given("유효한 코드가 주어지고") {
+            val code = "7K2J77US6V"
             When("검색하면") {
-                val result = jpaRedeemCodeRepository.findByCodeAndRedeemed(code, redeemed)
-                then("조건의 리딤 코드가 검색된다.") {
-                    result?.code shouldBe code
-                    result?.redeemed shouldBe redeemed
+                val result = jpaRedeemCodeRepository.findByCodeAndRedeemedAndExpiredByAfter(code)
+                then("만료기한이 남아있고, 리딤되지 않았으며 입력한 코드와 동일한 리딤코드가 검색된다.") {
+                    result shouldNotBe null
+                    requireNotNull(result)
+                    result.code shouldBe code
+                    result.expiredBy shouldBeAfter ZonedDateTime.now()
+
+                }
+            }
+        }
+
+        this.given("리딤된 코드가 주어지고") {
+            val code = "NINQM6XEHY"
+            When("검색하면") {
+                val result = jpaRedeemCodeRepository.findByCodeAndRedeemedAndExpiredByAfter(code)
+                then("아무것도 나오지 않는다.") {
+                    result shouldBe null
                 }
             }
         }

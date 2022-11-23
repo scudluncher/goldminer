@@ -2,13 +2,19 @@ package com.carrera.goldminer.core.goldledger.domain.entity
 
 import com.carrera.goldminer.core.goldledger.domain.value.Gold
 import com.carrera.goldminer.core.goldledger.domain.value.GoldAmount
+import com.carrera.goldminer.core.redeemcode.domain.entity.RedeemCode
 
 class GoldLedger(
-    val id: Long,
+    val id: Long = 0L,
     val ownerId: Long,
     val chargedGold: Gold,
     val usedGold: GoldAmount = GoldAmount(0),
 ) {
+    constructor(redeemCode: RedeemCode, userId: Long) : this(
+        ownerId = userId,
+        chargedGold = redeemCode.includedGold
+    )
+
     fun allConsumed(): GoldLedger {
         return copy(
             usedGold = GoldAmount(chargedGold.amount)

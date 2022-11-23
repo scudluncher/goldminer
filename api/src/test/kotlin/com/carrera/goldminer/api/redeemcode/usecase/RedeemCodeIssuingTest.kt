@@ -33,8 +33,8 @@ class RedeemCodeIssuingTest : BehaviorSpec({
                 .execute()
             then("redeem code 가 발행된다.") {
                 issuedCode.redeemed shouldBe false
-                issuedCode.gold.amount shouldBe goldAmount
-                issuedCode.gold.expiredBy shouldBe monthLater
+                issuedCode.includedGold.amount shouldBe goldAmount
+                issuedCode.includedGold.expiredBy shouldBe monthLater
                 issuedCode.expiredBy shouldBe weekLater
             }
         }

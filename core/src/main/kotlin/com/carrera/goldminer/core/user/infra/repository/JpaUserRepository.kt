@@ -4,6 +4,7 @@ import com.carrera.goldminer.core.user.domain.entity.User
 import com.carrera.goldminer.core.user.domain.repository.UserRepository
 import com.carrera.goldminer.core.user.infra.entity.UserJpaEntity
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import org.springframework.stereotype.Repository
 
@@ -17,6 +18,11 @@ class JpaUserRepository(private val crudUserRepository: JpaCrudUserRepository) :
     override fun save(user: User): User {
         return crudUserRepository.save(UserJpaEntity(user))
             .toDomainEntity()
+    }
+
+    override fun findById(id: Long): User? {
+        return crudUserRepository.findByIdOrNull(id)
+            ?.toDomainEntity()
     }
 }
 

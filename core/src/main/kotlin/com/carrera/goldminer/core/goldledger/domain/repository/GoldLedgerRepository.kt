@@ -7,7 +7,7 @@ import java.time.ZonedDateTime
 
 interface GoldLedgerRepository {
     fun save(goldLedger: GoldLedger): GoldLedger
-    fun findByOwnerIdAndGoldNotExpiredAndNotAllConsumedOrderByExpiredBy(ownerId: Long): List<GoldLedger>
+    fun findValidOneByUserIdOrderByExpired(ownerId: Long): List<GoldLedger>
 }
 
 class FakeGoldLedgerRepository : GoldLedgerRepository {
@@ -30,7 +30,7 @@ class FakeGoldLedgerRepository : GoldLedgerRepository {
         }
     }
 
-    override fun findByOwnerIdAndGoldNotExpiredAndNotAllConsumedOrderByExpiredBy(ownerId: Long): List<GoldLedger> {
+    override fun findValidOneByUserIdOrderByExpired(ownerId: Long): List<GoldLedger> {
         val now = ZonedDateTime.now()
         return goldLedgers.filter {
             it.ownerId == ownerId

@@ -25,8 +25,8 @@ class RedeemCodeJpaEntity(
     constructor(redeemCode: RedeemCode) : this(
         redeemCode.id,
         redeemCode.code,
-        redeemCode.gold.amount,
-        redeemCode.gold.expiredBy,
+        redeemCode.includedGold.amount,
+        redeemCode.includedGold.expiredBy,
         redeemCode.expiredBy,
         redeemCode.redeemed
     )

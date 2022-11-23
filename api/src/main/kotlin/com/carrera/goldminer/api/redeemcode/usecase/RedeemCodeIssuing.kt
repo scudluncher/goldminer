@@ -14,7 +14,7 @@ class RedeemCodeIssuing(
         val code = notDuplicatedRandomCode()
         val redeemCode = RedeemCode(
             code = code,
-            gold = Gold(value.amount, value.goldExpiredBy),
+            includedGold = Gold(value.amount, value.goldExpiredBy),
             expiredBy = value.codeExpiredBy
         )
 

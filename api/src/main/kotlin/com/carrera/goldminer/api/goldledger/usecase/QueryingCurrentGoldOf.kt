@@ -10,7 +10,7 @@ class QueryingCurrentGoldOf(
 ) {
     fun execute(): GoldAmount {
         val validGoldLedgers =
-            goldLedgerRepository.findByOwnerIdAndGoldNotExpiredAndNotAllConsumedOrderByExpiredBy(ownerId)
+            goldLedgerRepository.findValidOneByUserIdOrderByExpired(ownerId)
 
         return GoldAmount(validGoldLedgers.usableAmountOf())
     }

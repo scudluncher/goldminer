@@ -11,8 +11,8 @@ class RedeemCodeIssuedViewModel(
 ) {
     constructor(redeemCode: RedeemCode) : this(
         code = redeemCode.code,
-        goldAmount = redeemCode.gold.amount,
-        goldExpiredBy = redeemCode.gold.expiredBy,
+        goldAmount = redeemCode.includedGold.amount,
+        goldExpiredBy = redeemCode.includedGold.expiredBy,
         codeExpiredBy = redeemCode.expiredBy
     )
 }
