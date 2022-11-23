@@ -1,8 +1,8 @@
-package com.carerra.goldminer.goldchange.domain.repository
+package com.carerra.goldminer.goldledger.domain.repository
 
-import com.carerra.goldminer.goldchange.domain.entity.GoldLedger
-import com.carerra.goldminer.goldchange.domain.value.Gold
-import com.carerra.goldminer.goldchange.domain.value.GoldAmount
+import com.carerra.goldminer.goldledger.domain.entity.GoldLedger
+import com.carerra.goldminer.goldledger.domain.value.Gold
+import com.carerra.goldminer.goldledger.domain.value.GoldAmount
 import java.time.ZonedDateTime
 
 interface GoldLedgerRepository {
@@ -37,7 +37,7 @@ class FakeGoldLedgerRepository : GoldLedgerRepository {
                     && it.chargedGold.expiredBy.isAfter(now)
                     && it.chargedGold.amount != it.usedGold.amount
         }
-            .sortedByDescending { it.chargedGold.expiredBy }
+            .sortedBy { it.chargedGold.expiredBy }
     }
 
     private val aMonthLater = ZonedDateTime.now().plusMonths(1)
@@ -80,6 +80,13 @@ class FakeGoldLedgerRepository : GoldLedgerRepository {
             5,
             2,
             Gold(50000, aWeekLater)
+        ),
+        // 3번 유저 골드 모두 소모해서 0인
+        GoldLedger(
+            5,
+            3,
+            Gold(50000, aWeekLater),
+            GoldAmount(50000)
         ),
     )
 }

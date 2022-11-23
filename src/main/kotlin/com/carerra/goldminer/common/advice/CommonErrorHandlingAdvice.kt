@@ -1,6 +1,6 @@
 package com.carerra.goldminer.common.advice
 
-import com.carerra.goldminer.common.BadRequestException
+import com.carerra.goldminer.common.exception.BadRequestException
 import com.carerra.goldminer.common.response.ErrorResponse
 import org.springframework.core.Ordered
 import org.springframework.core.annotation.Order

@@ -1,4 +1,4 @@
-package com.carerra.goldminer.common
+package com.carerra.goldminer.common.exception
 
 class BadRequestException : RuntimeException {
     constructor()

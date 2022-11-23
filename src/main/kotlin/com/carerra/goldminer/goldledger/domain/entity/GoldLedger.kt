@@ -1,7 +1,7 @@
-package com.carerra.goldminer.goldchange.domain.entity
+package com.carerra.goldminer.goldledger.domain.entity
 
-import com.carerra.goldminer.goldchange.domain.value.Gold
-import com.carerra.goldminer.goldchange.domain.value.GoldAmount
+import com.carerra.goldminer.goldledger.domain.value.Gold
+import com.carerra.goldminer.goldledger.domain.value.GoldAmount
 
 class GoldLedger(
     val id: Long,

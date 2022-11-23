@@ -1,6 +1,6 @@
 package com.carerra.goldminer.redeemcode.domain.repository
 
-import com.carerra.goldminer.goldchange.domain.value.Gold
+import com.carerra.goldminer.goldledger.domain.value.Gold
 import com.carerra.goldminer.redeemcode.domain.entity.RedeemCode
 import java.time.ZonedDateTime
 

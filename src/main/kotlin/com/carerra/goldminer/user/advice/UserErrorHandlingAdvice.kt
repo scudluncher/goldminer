@@ -1,13 +1,14 @@
 package com.carerra.goldminer.user.advice
 
 import com.carerra.goldminer.common.response.ErrorResponse
+import com.carerra.goldminer.user.exception.UnauthorizedException
 import com.carerra.goldminer.user.exception.UserException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.RestControllerAdvice
 
-@ControllerAdvice
+@RestControllerAdvice
 class UserErrorHandlingAdvice {
     @ExceptionHandler(UserException::class)
     fun internalServerError(e: UserException): ResponseEntity<ErrorResponse> {
@@ -20,4 +21,14 @@ class UserErrorHandlingAdvice {
             )
     }
 
+    @ExceptionHandler(UnauthorizedException::class)
+    fun unauthorized(): ResponseEntity<ErrorResponse> {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            .body(
+                ErrorResponse(
+                    "UNAUTHORIZED",
+                    "권한이 없습니다."
+                )
+            )
+    }
 }

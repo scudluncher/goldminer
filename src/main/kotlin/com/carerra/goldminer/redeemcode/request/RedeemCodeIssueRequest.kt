@@ -1,6 +1,6 @@
 package com.carerra.goldminer.redeemcode.request
 
-import com.carerra.goldminer.common.BadRequestException
+import com.carerra.goldminer.common.exception.BadRequestException
 import com.carerra.goldminer.redeemcode.usecase.RedeemCodeIssueValue
 import java.time.ZonedDateTime
 import javax.validation.constraints.Future

@@ -1,4 +1,4 @@
-package com.carerra.goldminer.goldchange.domain.value
+package com.carerra.goldminer.goldledger.domain.value
 
 import java.time.ZonedDateTime
 

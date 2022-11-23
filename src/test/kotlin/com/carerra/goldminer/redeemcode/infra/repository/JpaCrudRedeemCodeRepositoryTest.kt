@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import java.time.ZonedDateTime
 
 @SpringBootTest
-
 class JpaCrudRedeemCodeRepositoryTest : BehaviorSpec() {
     override fun extensions() = listOf(SpringExtension)
 

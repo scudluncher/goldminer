@@ -1,3 +1,3 @@
-package com.carerra.goldminer.goldchange.exception
+package com.carerra.goldminer.goldledger.exception
 
 class InsufficientGoldException : RuntimeException()
