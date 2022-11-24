@@ -1,5 +1,6 @@
 package com.carrera.goldminer.api.redeemcode.usecase
 
+import com.carrera.goldminer.core.gold.domain.value.GoldAmount
 import com.carrera.goldminer.core.redeemcode.domain.repository.FakeRedeemCodeRepository
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -33,8 +34,8 @@ class RedeemCodeIssuingTest : BehaviorSpec({
                 .execute()
             then("redeem code 가 발행된다.") {
                 issuedCode.redeemed shouldBe false
-                issuedCode.includedGold.amount shouldBe goldAmount
-                issuedCode.includedGold.expiredBy shouldBe monthLater
+                issuedCode.includedChargedGold.gold shouldBe GoldAmount(goldAmount)
+                issuedCode.includedChargedGold.expiredBy shouldBe monthLater
                 issuedCode.expiredBy shouldBe weekLater
             }
         }

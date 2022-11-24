@@ -1,14 +1,14 @@
 package com.carrera.goldminer.core.redeemcode.domain.entity
 
-import com.carrera.goldminer.core.goldledger.domain.entity.GoldLedger
-import com.carrera.goldminer.core.goldledger.domain.value.Gold
+import com.carrera.goldminer.core.gold.domain.entity.GoldLedger
+import com.carrera.goldminer.core.gold.domain.value.ChargedGold
 import com.carrera.goldminer.core.redeemcode.domain.value.RedeemingResult
 import java.time.ZonedDateTime
 
 class RedeemCode(
     val id: Long = 0L,
     val code: String,
-    val includedGold: Gold,
+    val includedChargedGold: ChargedGold,
     val expiredBy: ZonedDateTime,
     val redeemed: Boolean = false,
     val version: Long? = null,
@@ -16,17 +16,16 @@ class RedeemCode(
     private fun copy(
         id: Long = this.id,
         code: String = this.code,
-        gold: Gold = this.includedGold,
+        chargedGold: ChargedGold = this.includedChargedGold,
         expiredBy: ZonedDateTime = this.expiredBy,
         redeemed: Boolean = this.redeemed,
-        version: Long? = this.version,
     ) = RedeemCode(
         id,
         code,
-        gold,
+        chargedGold,
         expiredBy,
         redeemed,
-        version
+        this.version
     )
 
     fun redeem(userId: Long): RedeemingResult {

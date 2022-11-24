@@ -1,6 +1,7 @@
 package com.carrera.goldminer.api.redeemcode.usecase
 
-import com.carrera.goldminer.core.goldledger.domain.value.Gold
+import com.carrera.goldminer.core.gold.domain.value.ChargedGold
+import com.carrera.goldminer.core.gold.domain.value.GoldAmount
 import com.carrera.goldminer.core.redeemcode.domain.entity.RedeemCode
 import com.carrera.goldminer.core.redeemcode.domain.repository.RedeemCodeRepository
 import java.time.ZonedDateTime
@@ -12,9 +13,10 @@ class RedeemCodeIssuing(
 ) {
     fun execute(): RedeemCode {
         val code = notDuplicatedRandomCode()
+        val goldAmount = GoldAmount(value.amount)
         val redeemCode = RedeemCode(
             code = code,
-            includedGold = Gold(value.amount, value.goldExpiredBy),
+            includedChargedGold = ChargedGold(goldAmount, value.goldExpiredBy),
             expiredBy = value.codeExpiredBy,
         )
 

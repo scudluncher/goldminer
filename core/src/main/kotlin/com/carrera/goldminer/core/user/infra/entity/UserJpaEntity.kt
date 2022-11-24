@@ -10,10 +10,8 @@ class UserJpaEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long,
-
     var userName: String,
     var password: String = "",
-
     @Enumerated(EnumType.STRING)
     var userType: UserType,
 ) : JpaEntity<User> {

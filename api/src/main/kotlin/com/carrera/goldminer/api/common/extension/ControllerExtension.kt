@@ -21,8 +21,8 @@ interface ControllerExtension {
         return !isAdmin()
     }
 
-    fun isSameOwnerTo(ownerId: Long): Boolean {
-        return loggedInUser().id == ownerId
+    fun isSameOwnerTo(userId: Long): Boolean {
+        return loggedInUser().id == userId
     }
 
     fun checkExistingUser(userId: Long) {

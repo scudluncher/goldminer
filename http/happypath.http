@@ -1,5 +1,5 @@
 ### admin atreus/1234 issue redeem code
-POST http://localhost:8080/admin/redeemcodes
+POST http://localhost:8080/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 
 ### admin atreus/1234 issue redeem code, 금 만기일이 리딤코드 만기일보다 앞설 때
-POST http://localhost:8080/admin/redeemcodes
+POST http://localhost:8080/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
@@ -22,7 +22,7 @@ Content-Type: application/json
 }
 
 ### admin atreus/1234 issue redeem code, 만기일이 현재보다 이전일 때
-POST http://localhost:8080/admin/redeemcodes
+POST http://localhost:8080/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 

@@ -1,6 +1,7 @@
 package com.carrera.goldminer.core.redeemcode.domain.repository
 
-import com.carrera.goldminer.core.goldledger.domain.value.Gold
+import com.carrera.goldminer.core.gold.domain.value.ChargedGold
+import com.carrera.goldminer.core.gold.domain.value.GoldAmount
 import com.carrera.goldminer.core.redeemcode.domain.entity.RedeemCode
 import java.time.ZonedDateTime
 
@@ -16,23 +17,23 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
     }
 
     override fun save(redeemCode: RedeemCode): RedeemCode {
-        if (redeemCode.id == 0L) {
+        return if (redeemCode.id == 0L) {
             val newRedeemCode = RedeemCode(
                 (redeemCodes.maxOfOrNull { it.id } ?: 0) + 1,
                 redeemCode.code,
-                redeemCode.includedGold,
+                redeemCode.includedChargedGold,
                 redeemCode.expiredBy,
                 redeemCode.redeemed,
                 redeemCode.version
             )
             redeemCodes.add(newRedeemCode)
 
-            return newRedeemCode
+            newRedeemCode
         } else {
             redeemCodes.removeIf { it.id == redeemCode.id }
             redeemCodes.add(redeemCode)
 
-            return redeemCode
+            redeemCode
         }
     }
 
@@ -48,37 +49,37 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
         RedeemCode(
             id = 1,
             code = "7K2J77US6V",
-            includedGold = Gold(100, aMonthLater),
+            includedChargedGold = ChargedGold(GoldAmount(100), aMonthLater),
             expiredBy = aMonthLater
         ),
         RedeemCode(
             id = 2,
             code = "R1VQPB43RQ",
-            includedGold = Gold(200, aMonthLater),
+            includedChargedGold = ChargedGold(GoldAmount(200), aMonthLater),
             expiredBy = aMonthLater
         ),
         RedeemCode(
             id = 3,
             code = "2BTQEAYUKN",
-            includedGold = Gold(300, aWeekLater),
+            includedChargedGold = ChargedGold(GoldAmount(300), aWeekLater),
             expiredBy = aWeekLater
         ),
         RedeemCode(
             id = 4,
             code = "DN10U2KVLR",
-            includedGold = Gold(400, aMonthLater),
+            includedChargedGold = ChargedGold(GoldAmount(400), aMonthLater),
             expiredBy = aWeekLater
         ),
         RedeemCode(
             id = 5,
             code = "INVALID842",
-            includedGold = Gold(400, aWeekBefore),
+            includedChargedGold = ChargedGold(GoldAmount(400), aWeekBefore),
             expiredBy = aWeekBefore
         ),
         RedeemCode(
             id = 5,
             code = "A4TV7TGBH3",
-            includedGold = Gold(400, aWeekBefore),
+            includedChargedGold = ChargedGold(GoldAmount(400), aWeekBefore),
             expiredBy = aWeekBefore,
             redeemed = true
         )
