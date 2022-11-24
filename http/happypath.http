@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 
-### admin atreus/1234 issue redeem code, 금 만기일이 리딤코드 만기일보다 앞설 때
+### admin atreus/1234 issue redeem code, 금 만기일이 충전코드 만기일보다 앞설 때
 POST http://localhost:8080/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json

@@ -47,7 +47,7 @@ class FakeGoldLedgerRepository : GoldLedgerRepository {
     private val aWeekBefore = ZonedDateTime.now().minusWeeks(1)
 
     private val chargedGoldLedgers = mutableListOf(
-        // 1번 유저 도합 50000골드 소유중
+        // 1번 유저 도합 50000금 소유중
         // 기한 임박, 25000 충전, 10000 사용 --> 15000 잔여
         GoldLedger(
             1,
@@ -81,7 +81,7 @@ class FakeGoldLedgerRepository : GoldLedgerRepository {
             2,
             ChargedGold(GoldAmount(50000), aWeekLater)
         ),
-        // 3번 유저 골드 모두 소모해서 0인
+        // 3번 유저 금 모두 소모해서 0인
         GoldLedger(
             5,
             3,

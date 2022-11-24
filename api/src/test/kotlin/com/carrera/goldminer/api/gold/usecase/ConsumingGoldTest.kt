@@ -10,7 +10,7 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 
 class ConsumingGoldTest : BehaviorSpec({
-    given("남은 골드와 동일한 양의 차감 골드가 주어지고") {
+    given("남은 금과 동일한 양의 차감 금이 주어지고") {
         val goldLedgerRepository = FakeGoldLedgerRepository()
         val goldBalanceRepository = FakeGoldBalanceRepository()
         val request = ConsumingGoldValue(userId, 50000)
@@ -21,7 +21,7 @@ class ConsumingGoldTest : BehaviorSpec({
                 goldBalanceRepository
             )
                 .execute()
-            then("골드는 0 이 된다.") {
+            then("금는 0 이 된다.") {
                 result.currentGoldBalanceAmount shouldBe GoldAmount(0)
 
                 val validGoldLedgers =
@@ -32,7 +32,7 @@ class ConsumingGoldTest : BehaviorSpec({
         }
     }
 
-    given("남은 골드보다 많은 양의 차감 골드가 주어지고") {
+    given("남은 금보다 많은 양의 차감 금이 주어지고") {
         val goldLedgerRepository = FakeGoldLedgerRepository()
         val goldBalanceRepository = FakeGoldBalanceRepository()
         val request = ConsumingGoldValue(userId, 100000000)
@@ -42,13 +42,13 @@ class ConsumingGoldTest : BehaviorSpec({
                 goldLedgerRepository,
                 goldBalanceRepository
             )
-            then("골드가 부족함을 알린다") {
+            then("금이 부족함을 알린다") {
                 shouldThrow<InsufficientGoldException> { consumeGold.execute() }
             }
         }
     }
 
-    given("남은 골드보다 적은 양의 차감 골드가 주어지고") {
+    given("남은 금보다 적은 양의 차감 금이 주어지고") {
         val goldLedgerRepository = FakeGoldLedgerRepository()
         val goldBalanceRepository = FakeGoldBalanceRepository()
         val request = ConsumingGoldValue(userId, 45000)
@@ -59,7 +59,7 @@ class ConsumingGoldTest : BehaviorSpec({
                 goldBalanceRepository
             )
                 .execute()
-            then("골드가 남는다.") {
+            then("금이 남는다.") {
                 result.currentGoldBalanceAmount shouldBe GoldAmount(5000)
 
                 val validGoldLedgers =
@@ -71,7 +71,7 @@ class ConsumingGoldTest : BehaviorSpec({
         }
     }
 
-    given("골드가 0인 user 가 주어지고") {
+    given("금이 0인 user 가 주어지고") {
         val goldLedgerRepository = FakeGoldLedgerRepository()
         val goldBalanceRepository = FakeGoldBalanceRepository()
         val allConsumedUserId = 3L
@@ -82,13 +82,13 @@ class ConsumingGoldTest : BehaviorSpec({
                 goldLedgerRepository,
                 goldBalanceRepository
             )
-            then("골드가 부족함을 알린다") {
+            then("금이 부족함을 알린다") {
                 shouldThrow<InsufficientGoldException> { consumeGold.execute() }
             }
         }
     }
 
-    given("골드 거래 내역이 없는 user 가 주어지고") {
+    given("금 거래 내역이 없는 user 가 주어지고") {
         val goldLedgerRepository = FakeGoldLedgerRepository()
         val goldBalanceRepository = FakeGoldBalanceRepository()
         val allConsumedUserId = 111L
@@ -99,7 +99,7 @@ class ConsumingGoldTest : BehaviorSpec({
                 goldLedgerRepository,
                 goldBalanceRepository
             )
-            then("골드가 부족함을 알린다") {
+            then("금이 부족함을 알린다") {
                 shouldThrow<InsufficientGoldException> { consumeGold.execute() }
             }
         }

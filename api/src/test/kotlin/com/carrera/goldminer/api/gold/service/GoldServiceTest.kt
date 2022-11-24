@@ -51,14 +51,14 @@ class GoldServiceTest : BehaviorSpec() {
     private lateinit var goldService: GoldService
 
     init {
-        this.given("하나의 유효 리딤코드가 주어지고") {
+        this.given("하나의 유효 충전코드가 주어지고") {
 
             val code = "7K2J77US6V"
             val chargingValue = ChargingValue(
                 code,
                 1L
             )
-            When("동시에 여러 요청으로 해당 리딤코드를 활성화 하려 하면") {
+            When("동시에 여러 요청으로 해당 충전코드를 활성화 하려 하면") {
                 var exceptionCount = 0
                 val count = 50
                 coroutineScope {

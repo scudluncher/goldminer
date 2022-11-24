@@ -6,6 +6,7 @@ import org.springframework.core.Ordered
 import org.springframework.core.annotation.Order
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.orm.ObjectOptimisticLockingFailureException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
@@ -42,6 +43,17 @@ class CommonErrorHandlingAdvice {
                 ErrorResponse(
                     "WRONG_ARGUMENT",
                     e.bindingResult.allErrors[0].defaultMessage ?: HttpStatus.BAD_REQUEST.reasonPhrase
+                )
+            )
+    }
+
+    @ExceptionHandler(ObjectOptimisticLockingFailureException::class)
+    fun concurrencyError(): ResponseEntity<ErrorResponse> {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+            .body(
+                ErrorResponse(
+                    "CONCURRENCY_ERROR",
+                    "요청하신 행위는 유효하지 않습니다."
                 )
             )
     }

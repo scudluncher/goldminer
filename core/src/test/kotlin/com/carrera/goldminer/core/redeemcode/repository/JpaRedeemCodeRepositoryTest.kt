@@ -80,7 +80,7 @@ class JpaRedeemCodeRepositoryTest : BehaviorSpec() {
             val code = "NINQM6XEHY"
             When("검색하면") {
                 val result = jpaRedeemCodeRepository.findByCode(code)
-                then("동일한 코드명의 리딤 코드가 검색된다.") {
+                then("동일한 코드명의 충전 코드가 검색된다.") {
                     result?.code shouldBe code
                 }
             }
@@ -102,7 +102,7 @@ class JpaRedeemCodeRepositoryTest : BehaviorSpec() {
                 val result = transactionWrapper.runWithTransaction {
                     jpaRedeemCodeRepository.findByCodeAndRedeemedAndExpiredByAfter(code)
                 }
-                then("만료기한이 남아있고, 리딤되지 않았으며 입력한 코드와 동일한 리딤코드가 검색된다.") {
+                then("만료기한이 남아있고, 충전되지 않았으며 입력한 코드와 동일한 충전코드가 검색된다.") {
                     result shouldNotBe null
                     requireNotNull(result)
                     result.code shouldBe code
@@ -112,7 +112,7 @@ class JpaRedeemCodeRepositoryTest : BehaviorSpec() {
             }
         }
 
-        this.given("리딤된 코드가 주어지고") {
+        this.given("충전된 코드가 주어지고") {
             val code = "NINQM6XEHY"
             When("검색하면") {
                 val result = transactionWrapper.runWithTransaction {

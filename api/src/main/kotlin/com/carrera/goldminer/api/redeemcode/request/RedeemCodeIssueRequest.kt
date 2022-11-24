@@ -16,7 +16,7 @@ class RedeemCodeIssueRequest(
 ) {
     fun toValue(): RedeemCodeIssueValue {
         if (goldExpiredBy.isBefore(codeExpiredBy)) {
-            throw BadRequestException("금 만기일은 리딤코드 만기일보다 뒤여야 합니다.")
+            throw BadRequestException("금 만기일은 충전 코드 만기일보다 뒤여야 합니다.")
         }
         return RedeemCodeIssueValue(
             amount,
