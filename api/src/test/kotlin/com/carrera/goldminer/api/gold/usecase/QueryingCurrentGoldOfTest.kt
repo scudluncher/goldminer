@@ -1,6 +1,7 @@
 package com.carrera.goldminer.api.gold.usecase
 
 import com.carrera.goldminer.core.gold.domain.repository.FakeGoldBalanceRepository
+import com.carrera.goldminer.core.gold.domain.value.GoldAmount
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.longs.shouldBeGreaterThan
 import io.kotest.matchers.shouldBe
@@ -12,8 +13,8 @@ class QueryingCurrentGoldOfTest : BehaviorSpec({
         When("현재 소유 금을 조회하면") {
             val result = QueryingCurrentGoldOf(userId, goldBalanceRepository).execute()
             then("소유 금 현황을 반환한다.") {
-                result.amount shouldBeGreaterThan 0
-                result.amount shouldBe 50000
+                result.currentGoldBalance.amount shouldBeGreaterThan 0
+                result.currentGoldBalance shouldBe GoldAmount(50000)
             }
         }
     }
@@ -24,7 +25,7 @@ class QueryingCurrentGoldOfTest : BehaviorSpec({
         When("현재 소유 금을 조회하면") {
             val result = QueryingCurrentGoldOf(userId, goldBalanceRepository).execute()
             then("소유 금 현황 0금을 반환한다.") {
-                result.amount shouldBe 0
+                result.currentGoldBalance shouldBe GoldAmount(0)
             }
         }
     }
@@ -35,7 +36,7 @@ class QueryingCurrentGoldOfTest : BehaviorSpec({
         When("현재 소유 금을 조회하면") {
             val result = QueryingCurrentGoldOf(userId, goldBalanceRepository).execute()
             then("소유 금 현황 0금을 반환한다.") {
-                result.amount shouldBe 0
+                result.currentGoldBalance shouldBe GoldAmount(0)
             }
         }
     }

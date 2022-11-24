@@ -83,7 +83,7 @@ class FakeGoldLedgerRepository : GoldLedgerRepository {
         ),
         // 3번 유저 금 모두 소모해서 0인
         GoldLedger(
-            5,
+            6,
             3,
             ChargedGold(GoldAmount(50000), aWeekLater),
             GoldAmount(50000)

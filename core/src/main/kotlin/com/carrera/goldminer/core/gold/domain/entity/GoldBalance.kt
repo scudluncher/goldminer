@@ -6,7 +6,7 @@ class GoldBalance(
     val id: Long = 0L,
     val userId: Long,
     val gold: GoldAmount,
-    val version: Long? = null,
+    val version: Long = 1L,
 ) {
     fun changeBalance(changedGold: GoldAmount): GoldBalance {
         return copy(

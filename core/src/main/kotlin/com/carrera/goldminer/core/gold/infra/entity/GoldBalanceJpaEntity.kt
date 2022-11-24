@@ -13,7 +13,7 @@ class GoldBalanceJpaEntity(
     val userId: Long,
     var goldAmount: Long,
     @Version
-    var version: Long? = null,
+    var version: Long = 1L,
 ) : JpaEntity<GoldBalance> {
     constructor(goldBalance: GoldBalance) : this(
         goldBalance.id,

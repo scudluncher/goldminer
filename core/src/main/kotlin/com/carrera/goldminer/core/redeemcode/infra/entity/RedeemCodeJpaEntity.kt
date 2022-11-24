@@ -18,7 +18,7 @@ class RedeemCodeJpaEntity(
     var expiredBy: ZonedDateTime,
     var redeemed: Boolean,
     @Version
-    var version: Long? = null,
+    var version: Long = 1L,
 ) : JpaEntity<RedeemCode> {
     constructor(redeemCode: RedeemCode) : this(
         redeemCode.id,

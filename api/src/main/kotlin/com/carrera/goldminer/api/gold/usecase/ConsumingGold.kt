@@ -24,15 +24,15 @@ class ConsumingGold(
 
         // 차감 후 잔고 예상액에 따라서 goldLedger list 처리 분기
         // 1. 차감 후 잔고 예상액 0 ==> 모든 gold ledger 소모 처리
-        // 2. 차감 후 잔고 예상액이 0보다 클 때 ==> n-1 개의 gold ledger 소모 처리, 마지막 1개 부분 소모 처리
+        // 2. 차감 후 잔고 예상액이 0보다 클 때 ==> n 개의 gold ledger 소모 처리, n+1번째 부분 소모 처리
         // 변경 내역 저장
         val afterConsumeBalanceAmountExpectation = balance.gold.amount - consumeValue.amount
-        when (afterConsumeBalanceAmountExpectation) {
+        val affectedLedgers = when (afterConsumeBalanceAmountExpectation) {
             0L -> validGoldLedgers.map { it.allConsumed() }
-            else -> deductUntilNotOverflow(consumeValue.amount, validGoldLedgers)
+            else -> calculateForResidualCase(consumeValue.amount, validGoldLedgers)
         }
-            .map { goldLedgerRepository.save((it)) }
 
+        affectedLedgers.map { goldLedgerRepository.save(it) }
         // 변경된 잔고 저장
         val consumedGold = GoldAmount(-consumeValue.amount)
         val afterConsumingBalance = goldBalanceRepository.save(balance.changeBalance(consumedGold))
@@ -43,18 +43,22 @@ class ConsumingGold(
         )
     }
 
-    private fun deductUntilNotOverflow(amount: Long, goldLedgers: List<GoldLedger>): List<GoldLedger> {
+    private fun calculateForResidualCase(amount: Long, goldLedgers: List<GoldLedger>): List<GoldLedger> {
         var residual = amount
-        // n-1개의 gold ledger 소모 처리, 마지막 1개 부분 소모 처리
-        fun calculate(): List<GoldLedger> {
-            val affectedLedgers = goldLedgers.takeWhile {
-                residual = -(it.chargedGold.gold - it.usedGold).amount
-                residual < 0
-            }
-            val allConsumedLedgers = affectedLedgers.dropLast(1).map { it.allConsumed() }
-            val partiallyConsumedLastLedger = affectedLedgers.last().partiallyConsumed(residual)
 
-            return allConsumedLedgers + partiallyConsumedLastLedger
+        // 완전 소모 해야 하는 n 개 소모처리, n+1 번째 부분 소모 처리
+        fun calculate(): List<GoldLedger> {
+            val allConsumedLedgers = goldLedgers.takeWhile {
+                val remainingGold = (it.chargedGold.gold - it.usedGold).amount
+                residual -= remainingGold
+                residual >= 0L
+            }
+            return if (residual == 0L) {
+                allConsumedLedgers.map { it.allConsumed() }
+            } else {
+                allConsumedLedgers.map { it.allConsumed() } +
+                        goldLedgers[allConsumedLedgers.size].partiallyConsumed(residual)
+            }
         }
 
         return calculate()
@@ -65,3 +69,14 @@ class ConsumingGoldValue(
     val userId: Long,
     val amount: Long,
 )
+
+inline fun <T> Iterable<T>.takeWhileInclusive(
+    predicate: (T) -> Boolean,
+): List<T> {
+    var shouldContinue = true
+    return takeWhile {
+        val result = shouldContinue
+        shouldContinue = predicate(it)
+        result
+    }
+}

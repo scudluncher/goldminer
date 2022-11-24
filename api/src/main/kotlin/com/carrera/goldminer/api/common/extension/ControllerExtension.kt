@@ -26,9 +26,7 @@ interface ControllerExtension {
     }
 
     fun checkExistingUser(userId: Long) {
-        userService().findByUserId(userId)?.let {
-            throw BadRequestException("해당 유저는 존재하지 않습니다")
-        }
+        userService().findByUserId(userId) ?: throw BadRequestException("해당 유저는 존재하지 않습니다")
     }
 
     fun checkUserOneSelf(userId: Long) {

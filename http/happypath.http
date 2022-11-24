@@ -1,16 +1,40 @@
-### admin atreus/1234 issue redeem code
+### 어드민 계정정보 atreus/1234 (id = 4)
+### 어드민이 정상 리딤코드를 발급한다.
 POST http://localhost:8080/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
   "amount": 10000,
-  "goldExpiredBy": "2023-12-31T10:15:30+01:00",
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
   "codeExpiredBy": "2022-12-31T10:15:30+01:00"
 }
 
+### 어드민이 유효기간이 한참 뒤인 정상 리딤코드를 발급한다.
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
 
-### admin atreus/1234 issue redeem code, 금 만기일이 충전코드 만기일보다 앞설 때
+{
+  "amount": 10000,
+  "goldExpiredBy": "2025-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2025-12-31T10:15:30+01:00"
+}
+
+### 어드민이 유효기간이 매우 가까운 정상 리딤코드를 발급한다.
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 5000,
+  "goldExpiredBy": "2022-12-10T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-10T10:15:30+01:00"
+}
+
+
+
+### 어드민이 비정상 리딤코드 발급을 시도한다. : 금 만기일이 충전코드 만기일보다 앞설 때
 POST http://localhost:8080/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
@@ -21,7 +45,7 @@ Content-Type: application/json
   "codeExpiredBy": "2022-12-31T10:15:30+01:00"
 }
 
-### admin atreus/1234 issue redeem code, 만기일이 현재보다 이전일 때
+### 어드민이 비정상 리딤코드 발급을 시도한다. : 만기일이 현재보다 이전일 때
 POST http://localhost:8080/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
@@ -30,4 +54,32 @@ Content-Type: application/json
   "amount": 10000,
   "goldExpiredBy": "2021-12-15T10:15:30+01:00",
   "codeExpiredBy": "2021-12-31T10:15:30+01:00"
+}
+
+
+### 어드민이 사용자 ID 1번에게 redeem code 를 활성하여 금을 충전한다.
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "OI4YEMAQP3"
+}
+
+### 어드민이 사용자 ID 1번의 금 잔고 조회
+GET http://localhost:8080/users/1/golds
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+### 어드민이 사용자 ID 1번의 금 잔고 조회 (http caching)
+GET http://localhost:8080/users/1/golds
+Authorization: Basic YXRyZXVzOjEyMzQ=
+If-None-Match: "5"
+
+### 어드민이 사용자 ID 1번의 금을 소모시킨다.
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "3600"
 }

@@ -8,7 +8,6 @@ import com.carrera.goldminer.api.gold.viewmodel.CurrentGoldViewModel
 import com.carrera.goldminer.api.gold.viewmodel.RedeemResultViewModel
 import com.carrera.goldminer.api.redeemcode.request.ChargingGoldWithCodeRequest
 import com.carrera.goldminer.api.user.service.UserService
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
@@ -17,7 +16,7 @@ import javax.validation.Valid
 @RestController
 class GoldController(
     private val goldService: GoldService,
-        private val userService: UserService,
+    private val userService: UserService,
 ) : ControllerExtension {
     override fun userService(): UserService {
         return this.userService
@@ -28,16 +27,16 @@ class GoldController(
     fun consumeGold(
         @RequestBody @Valid request: ConsumeGoldRequest,
         @PathVariable userId: Long,
-        ): ResponseEntity<SingleResponse<CurrentGoldViewModel>> {
+    ): ResponseEntity<SingleResponse<CurrentGoldViewModel>> {
         checkExistingUser(userId)
         checkUserOneSelf(userId)
 
         val changedGoldResult = goldService.consumeGold(request.toValue(userId))
 
-        return ResponseEntity(
-            SingleResponse.Ok(CurrentGoldViewModel(changedGoldResult.currentGoldBalanceAmount)),
-            HttpStatus.OK
-        )
+        return ResponseEntity.ok()
+            .body(
+                SingleResponse.Ok(CurrentGoldViewModel(changedGoldResult.currentGoldBalanceAmount))
+            )
     }
 
     @GetMapping("/users/{userId}/golds")
@@ -48,13 +47,14 @@ class GoldController(
 
         val currentGold = goldService.currentGoldOf(userId)
 
-        return ResponseEntity(
-            SingleResponse.Ok(CurrentGoldViewModel(currentGold)),
-            HttpStatus.OK
-        )
+        return ResponseEntity.ok()
+            .eTag(currentGold.version.toString())
+            .body(
+                SingleResponse.Ok(CurrentGoldViewModel(currentGold.currentGoldBalance))
+            )
     }
 
-    @PostMapping("/users/{userId}/golds/by-redeem")
+    @PostMapping("/users/{userId}/golds/earn-by-redeem")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     fun chargeGoldWithRedeem(
         @RequestBody @Valid request: ChargingGoldWithCodeRequest,
@@ -65,9 +65,10 @@ class GoldController(
 
         val changedGoldResult = goldService.chargeGoldWithCode(request.toValue(userId))
 
-        return ResponseEntity(
-            SingleResponse.Ok(RedeemResultViewModel(changedGoldResult)),
-            HttpStatus.OK
-        )
+        return ResponseEntity.ok()
+            .body(
+                SingleResponse.Ok(
+                    RedeemResultViewModel(changedGoldResult))
+            )
     }
 }

@@ -11,7 +11,7 @@ class RedeemCode(
     val includedChargedGold: ChargedGold,
     val expiredBy: ZonedDateTime,
     val redeemed: Boolean = false,
-    val version: Long? = null,
+    val version: Long = 1L,
 ) {
     private fun copy(
         id: Long = this.id,
