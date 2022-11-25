@@ -1,5 +1,3 @@
 spring:
   config.import: core.yml
-  jackson:
-    visibility.field: any
-    serialization.fail_on_empty_beans: false
+

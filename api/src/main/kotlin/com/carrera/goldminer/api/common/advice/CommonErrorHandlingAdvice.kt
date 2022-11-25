@@ -27,7 +27,7 @@ class CommonErrorHandlingAdvice {
 
     @ExceptionHandler(BadRequestException::class)
     fun badRequest(e: BadRequestException): ResponseEntity<ErrorResponse> {
-        return ResponseEntity.status(HttpStatus.CONFLICT)
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
             .body(
                 ErrorResponse(
                     "BAD_REQUEST",

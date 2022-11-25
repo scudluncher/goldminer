@@ -1,3 +1,3 @@
 package com.carrera.goldminer.api.user.exception
 
-class UnauthorizedException: RuntimeException()
+class NoPermissionException: RuntimeException()

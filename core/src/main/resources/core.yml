@@ -1,6 +1,10 @@
 spring:
   jackson:
     visibility.field: any
+    serialization.fail_on_empty_beans: false
+    serialization:
+      writeDatesAsT imestamps: false
+
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
@@ -22,4 +26,4 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
-
+      springframework: DEBUG

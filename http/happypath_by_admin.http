@@ -1,6 +1,7 @@
 ### 어드민 계정정보 atreus/1234 (id = 4)
+
 ### 어드민이 정상 충전코드를 발급한다.
-POST http://localhost:8080/redeemcodes
+POST http://localhost:8080/admin/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
@@ -10,19 +11,8 @@ Content-Type: application/json
   "codeExpiredBy": "2022-12-31T10:15:30+01:00"
 }
 
-### 어드민이 유효기간이 한참 뒤인 정상 충전코드를 발급한다.
-POST http://localhost:8080/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2025-12-31T10:15:30+01:00",
-  "codeExpiredBy": "2025-12-31T10:15:30+01:00"
-}
-
 ### 어드민이 유효기간이 매우 가까운 정상 충전코드를 발급한다.
-POST http://localhost:8080/redeemcodes
+POST http://localhost:8080/admin/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
@@ -32,30 +22,16 @@ Content-Type: application/json
   "codeExpiredBy": "2022-12-10T10:15:30+01:00"
 }
 
-
-
-### 어드민이 비정상 충전코드 발급을 시도한다. : 금 만기일이 충전코드 만기일보다 앞설 때
-POST http://localhost:8080/redeemcodes
+### 어드민이 유효기간이 한참 뒤인 정상 충전코드를 발급한다.
+POST http://localhost:8080/admin/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
   "amount": 10000,
-  "goldExpiredBy": "2022-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+  "goldExpiredBy": "2025-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2025-12-31T10:15:30+01:00"
 }
-
-### 어드민이 비정상 충전코드 발급을 시도한다. : 만기일이 현재보다 이전일 때
-POST http://localhost:8080/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2021-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2021-12-31T10:15:30+01:00"
-}
-
 
 ### 어드민이 사용자 ID 1번에게 redeem code 를 활성하여 금을 충전한다.
 POST http://localhost:8080/users/1/golds/earn-by-redeem
@@ -86,9 +62,11 @@ Content-Type: application/json
 
 
 ### 어드민이 충전코드를 조회한다.
-GET http://localhost:8080/redeemcodes
+GET http://localhost:8080/admin/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 
 ### 어드민이 충전코드를 조회한다. (페이지 조회)
-GET http://localhost:8080/redeemcodes?page=3&perPage=2
+GET http://localhost:8080/admin/redeemcodes?page=3&perPage=2
 Authorization: Basic YXRyZXVzOjEyMzQ=
+
+

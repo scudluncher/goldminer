@@ -1,0 +1,33 @@
+### 사용자 1 계정정보 kratos /1234 (id = 1)
+### 사용자 1이 충전코드를 발급 하려 하면 에러 발생
+POST http://localhost:8080/admin/redeemcodes
+Authorization: Basic a3JhdG9zOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+### 사용자 1이 사용자 ID 2번의 금 잔고 조회 하려 하면 에러발생
+GET http://localhost:8080/users/2/golds
+Authorization: Basic a3JhdG9zOjEyMzQ=
+
+### 사용자 1이 사용자 ID 2번의 금을 소모 하려 하면 에러발생
+POST http://localhost:8080/users/2/golds/consume
+Authorization: Basic a3JhdG9zOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "6000"
+}
+
+### 사용자 1이 충전코드를 조회 하려 하면 에러발생
+GET http://localhost:8080/admin/redeemcodes
+Authorization: Basic a3JhdG9zOjEyMzQ=
+
+### 사용자 1이 충전코드를 조회  하려 하면 에러발생
+GET http://localhost:8080/admin/redeemcodes?page=3&perPage=2
+Authorization: Basic a3JhdG9zOjEyMzQ=
+

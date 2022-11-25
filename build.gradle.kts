@@ -24,12 +24,6 @@ subprojects {
 
 extra["snippetsDir"] = file("build/generated-snippets")
 
-val kotestVersion = "5.5.4"
-
-//dependencies {
-//
-//}
-
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")

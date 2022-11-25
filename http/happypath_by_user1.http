@@ -1,0 +1,36 @@
+### 사용자 1 계정정보 kratos /1234 (id = 1)
+
+### 사용자 1이 사용자 ID 1번에게 redeem code 를 활성하여 금을 충전한다.
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic a3JhdG9zOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "CVOAX0Y36Z"
+}
+
+### 사용자 1이 사용자 ID 1번의 금 잔고 조회
+GET http://localhost:8080/users/1/golds
+Authorization: Basic a3JhdG9zOjEyMzQ=
+
+
+
+### 사용자 1이 사용자 ID 1번의 금 잔고 조회 (http caching)
+GET http://localhost:8080/users/1/golds
+Authorization: Basic a3JhdG9zOjEyMzQ=
+If-None-Match: "12"
+
+### 사용자 1이 사용자 ID 1번의 금을 소모시킨다.
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic a3JhdG9zOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "6000"
+}
+
+
+
+
+
+

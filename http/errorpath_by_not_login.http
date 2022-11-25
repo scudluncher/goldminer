@@ -1,0 +1,43 @@
+
+### 로그인 하지 않은 사용자가 정상 충전코드를 발급한다.
+POST http://localhost:8080/admin/redeemcodes
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+### 로그인 하지 않은 사용자가 사용자 ID 1번에게 redeem code 를 활성하여 금을 충전한다.
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Content-Type: application/json
+
+{
+  "code" : "CVOAX0Y36Z"
+}
+
+### 로그인 하지 않은 사용자가 사용자 ID 1번의 금 잔고 조회
+GET http://localhost:8080/users/1/golds
+
+### 로그인 하지 않은 사용자가 사용자 ID 1번의 금 잔고 조회 (http caching)
+GET http://localhost:8080/users/1/golds
+If-None-Match: "12"
+
+### 로그인 하지 않은 사용자가 사용자 ID 1번의 금을 소모시킨다.
+POST http://localhost:8080/users/1/golds/consume
+Content-Type: application/json
+
+{
+  "amount" : "6000"
+}
+
+
+### 로그인 하지 않은 사용자가 충전코드를 조회한다.
+GET http://localhost:8080/admin/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+### 로그인 하지 않은 사용자가 충전코드를 조회한다. (페이지 조회)
+GET http://localhost:8080/admin/redeemcodes?page=3&perPage=2
+
+

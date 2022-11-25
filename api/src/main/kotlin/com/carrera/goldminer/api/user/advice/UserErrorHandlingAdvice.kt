@@ -1,7 +1,7 @@
 package com.carrera.goldminer.api.user.advice
 
 import com.carrera.goldminer.api.common.response.ErrorResponse
-import com.carrera.goldminer.api.user.exception.UnauthorizedException
+import com.carrera.goldminer.api.user.exception.NoPermissionException
 import com.carrera.goldminer.api.user.exception.UserException
 import org.springframework.core.Ordered
 import org.springframework.core.annotation.Order
@@ -24,13 +24,13 @@ class UserErrorHandlingAdvice {
             )
     }
 
-    @ExceptionHandler(UnauthorizedException::class)
+    @ExceptionHandler(NoPermissionException::class)
     fun unauthorized(): ResponseEntity<ErrorResponse> {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
             .body(
                 ErrorResponse(
-                    "UNAUTHORIZED",
-                    "권한이 없습니다."
+                    "FORBIDDEN",
+                    "금지된 접근입니다."
                 )
             )
     }

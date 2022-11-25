@@ -10,7 +10,7 @@ import com.carrera.goldminer.api.redeemcode.viewmodel.RedeemCodeIssuedViewModel
 import com.carrera.goldminer.api.redeemcode.viewmodel.RedeemCodeViewModel
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
 @RestController
-@PreAuthorize("hasRole('ADMIN')")
 class RedeemCodeController(private val redeemCodeService: RedeemCodeService) {
-    @PostMapping("/redeemcodes")
+    @PostMapping("/admin/redeemcodes")
     fun issueRedeemCode(@RequestBody @Valid request: RedeemCodeIssueRequest): ResponseEntity<SingleResponse<RedeemCodeIssuedViewModel>> {
         val redeemCode = redeemCodeService.issueRedeemCode(request.toValue())
 
@@ -30,8 +29,10 @@ class RedeemCodeController(private val redeemCodeService: RedeemCodeService) {
         )
     }
 
-    @GetMapping("/redeemcodes")
+    @GetMapping("/admin/redeemcodes")
     fun retrieveRedeemCodes(pagingRequest: PagingRequest): ResponseEntity<ListResponse<RedeemCodeViewModel>> {
+        val holder = SecurityContextHolder.getContext()
+        println(holder.authentication.authorities.first().authority)
         val redeemCodes = redeemCodeService.retrieveRedeemCodes(pagingRequest.toPagingCondition())
             .translate(::RedeemCodeViewModel)
 

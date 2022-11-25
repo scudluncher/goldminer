@@ -1,7 +1,7 @@
 package com.carrera.goldminer.api.common.extension
 
 import com.carrera.goldminer.api.common.exception.BadRequestException
-import com.carrera.goldminer.api.user.exception.UnauthorizedException
+import com.carrera.goldminer.api.user.exception.NoPermissionException
 import com.carrera.goldminer.api.user.service.UserService
 import com.carrera.goldminer.core.user.domain.entity.User
 import org.springframework.security.core.context.SecurityContextHolder
@@ -31,7 +31,7 @@ interface ControllerExtension {
 
     fun checkUserOneSelf(userId: Long) {
         if (isUser() && !isSameOwnerTo(userId)) {
-            throw UnauthorizedException()
+            throw NoPermissionException()
         }
     }
 }

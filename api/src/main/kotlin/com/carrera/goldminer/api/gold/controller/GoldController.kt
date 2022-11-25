@@ -9,7 +9,6 @@ import com.carrera.goldminer.api.gold.viewmodel.CurrentGoldViewModel
 import com.carrera.goldminer.api.gold.viewmodel.RedeemResultViewModel
 import com.carrera.goldminer.api.user.service.UserService
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
@@ -23,13 +22,12 @@ class GoldController(
     }
 
     @PostMapping("/users/{userId}/golds/consume")
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     fun consumeGold(
         @RequestBody @Valid request: ConsumeGoldRequest,
         @PathVariable userId: Long,
     ): ResponseEntity<SingleResponse<CurrentGoldViewModel>> {
-        checkExistingUser(userId)
         checkUserOneSelf(userId)
+        checkExistingUser(userId)
 
         val changedGoldResult = goldService.consumeGold(request.toValue(userId))
 
@@ -40,10 +38,9 @@ class GoldController(
     }
 
     @GetMapping("/users/{userId}/golds")
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     fun currentGoldOf(@PathVariable userId: Long): ResponseEntity<SingleResponse<CurrentGoldViewModel>> {
-        checkExistingUser(userId)
         checkUserOneSelf(userId)
+        checkExistingUser(userId)
 
         val currentGold = goldService.currentGoldOf(userId)
 
@@ -55,13 +52,12 @@ class GoldController(
     }
 
     @PostMapping("/users/{userId}/golds/earn-by-redeem")
-    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     fun chargeGoldWithRedeem(
         @RequestBody @Valid request: ChargingGoldWithCodeRequest,
         @PathVariable userId: Long,
     ): ResponseEntity<SingleResponse<RedeemResultViewModel>> {
-        checkExistingUser(userId)
         checkUserOneSelf(userId)
+        checkExistingUser(userId)
 
         val changedGoldResult = goldService.chargeGoldWithCode(request.toValue(userId))
 
