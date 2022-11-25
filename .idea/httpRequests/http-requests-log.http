@@ -1,14 +1,31 @@
-POST http://localhost:8080/redeemcodes
+GET http://localhost:8080/redeemcodes?page=1&perPage=2
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+<> 2022-11-25T161245.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
-  "amount": 10000,
-  "goldExpiredBy": "2021-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2021-12-31T10:15:30+01:00"
+  "amount" : "6000"
 }
 
-<> 2022-11-24T233050.400.json
+<> 2022-11-25T161202.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "CVOAX0Y36Z"
+}
+
+<> 2022-11-25T161148.200.json
 
 ###
 
@@ -17,142 +34,81 @@ Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
-  "amount": 10000,
-  "goldExpiredBy": "2022-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+  "amount": 5000,
+  "goldExpiredBy": "2022-12-10T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-10T10:15:30+01:00"
 }
 
-<> 2022-11-24T233046.409.json
+<> 2022-11-25T161139.201.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "ZQZ08WBHHH"
+}
+
+<> 2022-11-25T161127.200.json
+
+###
+
+GET http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+<> 2022-11-25T161116.200.json
+
+###
+
+GET http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+<> 2022-11-25T161056.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "3600"
+}
+
+<> 2022-11-25T161050.200.json
+
+###
+
+GET http://localhost:8080/users/1/golds
+Authorization: Basic YXRyZXVzOjEyMzQ=
+If-None-Match: "12"
+
+<> 2022-11-25T161046.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "YCFWW66HYJ"
+}
+
+<> 2022-11-25T161034.200.json
+
+###
+
+GET http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+<> 2022-11-25T161018.200.json
 
 ###
 
 POST http://localhost:8080/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2023-12-31T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-24T233042.201.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2021-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2021-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-23T194417.400.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2022-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-23T194407.409.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2023-12-31T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-23T194402.201.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2023-12-31T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-23T164107.409.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2021-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2021-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-23T004122.400.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2022-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-23T004041.409.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": -1,
-  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-23T003757.400.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
-Authorization: Basic YXRyZXVzOjEyMzQ=
-Content-Type: application/json
-
-{
-  "amount": 10000,
-  "goldExpiredBy": "2022-12-15T10:15:30+01:00",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
-}
-
-<> 2022-11-23T003521.500.json
-
-###
-
-POST http://localhost:8080/admin/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
@@ -162,54 +118,468 @@ Content-Type: application/json
   "codeExpiredBy": "2022-12-31T10:15:30+01:00"
 }
 
-<> 2022-11-23T003151.201.json
+<> 2022-11-25T161015.201.json
 
 ###
 
-POST http://localhost:8080/admin/redeemcodes
+POST http://localhost:8080/redeemcodes
 Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
   "amount": 10000,
-  "goldExpiredBy": "2022-12-31T10:15:30+01:0",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:0"
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
 }
 
-<> 2022-11-23T002327.400.json
+<> 2022-11-25T161013.201.json
 
 ###
 
-POST http://localhost:8080/admin/redeemcodes
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
   "amount": 10000,
-  "goldExpiredBy": "2022-12-31T10:15:30+01:0",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:0"
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
 }
+
+<> 2022-11-25T161010.201.json
 
 ###
 
-POST http://localhost:8080/admin/giftcards
+GET http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+<> 2022-11-25T160917.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "OFXAQHP7T7"
+}
+
+<> 2022-11-25T160858.200.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
   "amount": 10000,
-  "goldExpiredBy": "2022-12-31T10:15:30+01:0",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:0"
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
 }
+
+<> 2022-11-25T160848.201.json
 
 ###
 
-POST http://localhost:8080/admin/giftcards
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
   "amount": 10000,
-  "goldExpiredBy": "2022-12-31T10:15:30+01:0",
-  "codeExpiredBy": "2022-12-31T10:15:30+01:0"
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
 }
+
+<> 2022-11-25T160845.201.json
+
+###
+
+GET http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+<> 2022-11-25T160650.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "MJSXUZ5RUS"
+}
+
+<> 2022-11-25T160618.200.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+<> 2022-11-25T160555.201.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+<> 2022-11-25T160551.201.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+<> 2022-11-25T160549.201.json
+
+###
+
+GET http://localhost:8080/users/1/golds
+Authorization: Basic YXRyZXVzOjEyMzQ=
+If-None-Match: "12"
+
+###
+
+GET http://localhost:8080/users/1/golds
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+<> 2022-11-25T033945.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "3600"
+}
+
+<> 2022-11-25T033656.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "500"
+}
+
+<> 2022-11-25T033641.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "500"
+}
+
+<> 2022-11-25T033633.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "500"
+}
+
+<> 2022-11-25T033621.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "OI4YEMAQP3"
+}
+
+<> 2022-11-25T033558.200.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 5000,
+  "goldExpiredBy": "2022-12-10T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-10T10:15:30+01:00"
+}
+
+<> 2022-11-25T033535.201.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "7000"
+}
+
+<> 2022-11-25T033449.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "7000"
+}
+
+<> 2022-11-25T033425.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "1QL1EBMA3J"
+}
+
+<> 2022-11-25T033419.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "L308GLGI53"
+}
+
+<> 2022-11-25T033409.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "XH8KG9YBGG"
+}
+
+<> 2022-11-25T033403.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "DDYSCAFZD6"
+}
+
+<> 2022-11-25T033358.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/earn-by-redeem
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "code" : "WF542J00WG"
+}
+
+<> 2022-11-25T033343.200.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2025-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2025-12-31T10:15:30+01:00"
+}
+
+<> 2022-11-25T033324.201.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2025-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2025-12-31T10:15:30+01:00"
+}
+
+<> 2022-11-25T033322.201.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+<> 2022-11-25T033319.201.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+<> 2022-11-25T033318.201.json
+
+###
+
+POST http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount": 10000,
+  "goldExpiredBy": "2022-12-31T10:15:30+01:00",
+  "codeExpiredBy": "2022-12-31T10:15:30+01:00"
+}
+
+<> 2022-11-25T033315.201.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "7000"
+}
+
+<> 2022-11-25T032252.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "500"
+}
+
+<> 2022-11-25T032242.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "10000"
+}
+
+<> 2022-11-25T032228.409.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "10000"
+}
+
+<> 2022-11-25T032221.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "10000"
+}
+
+<> 2022-11-25T032207.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "1500"
+}
+
+<> 2022-11-25T032147.200.json
+
+###
+
+POST http://localhost:8080/users/1/golds/consume
+Authorization: Basic YXRyZXVzOjEyMzQ=
+Content-Type: application/json
+
+{
+  "amount" : "1500"
+}
+
+<> 2022-11-25T032129.200.json
 
 ###
 

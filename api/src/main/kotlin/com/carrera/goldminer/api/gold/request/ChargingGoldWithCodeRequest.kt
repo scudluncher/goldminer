@@ -1,4 +1,4 @@
-package com.carrera.goldminer.api.redeemcode.request
+package com.carrera.goldminer.api.gold.request
 
 import com.carrera.goldminer.api.gold.usecase.ChargingValue
 import javax.validation.constraints.Size

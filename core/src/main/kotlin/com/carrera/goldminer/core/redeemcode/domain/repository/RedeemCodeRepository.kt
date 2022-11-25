@@ -1,5 +1,7 @@
 package com.carrera.goldminer.core.redeemcode.domain.repository
 
+import com.carrera.goldminer.core.common.value.PaginatedList
+import com.carrera.goldminer.core.common.value.PagingCondition
 import com.carrera.goldminer.core.gold.domain.value.ChargedGold
 import com.carrera.goldminer.core.gold.domain.value.GoldAmount
 import com.carrera.goldminer.core.redeemcode.domain.entity.RedeemCode
@@ -9,6 +11,7 @@ interface RedeemCodeRepository {
     fun findByCode(code: String): RedeemCode?
     fun save(redeemCode: RedeemCode): RedeemCode
     fun findValidOneByCodeWithLock(code: String): RedeemCode?
+    fun findAll(pagingCondition: PagingCondition): PaginatedList<RedeemCode>
 }
 
 class FakeRedeemCodeRepository : RedeemCodeRepository {
@@ -39,6 +42,18 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
 
     override fun findValidOneByCodeWithLock(code: String): RedeemCode? {
         return redeemCodes.firstOrNull { it.code == code && !it.redeemed && it.expiredBy.isAfter(ZonedDateTime.now()) }
+    }
+
+    override fun findAll(pagingCondition: PagingCondition): PaginatedList<RedeemCode> {
+        return if (pagingCondition.page == null || pagingCondition.perPage == null) {
+            PaginatedList(redeemCodes,redeemCodes.size)
+        } else {
+            val from = (pagingCondition.page - 1) * pagingCondition.perPage
+            val to = from + pagingCondition.perPage
+            val results: List<RedeemCode> = redeemCodes.subList(from, to)
+
+            PaginatedList(results, results.size)
+        }
     }
 
     private val aMonthLater = ZonedDateTime.now().plusMonths(1)

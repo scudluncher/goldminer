@@ -63,7 +63,7 @@ Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
-  "code" : "OI4YEMAQP3"
+  "code" : "CVOAX0Y36Z"
 }
 
 ### 어드민이 사용자 ID 1번의 금 잔고 조회
@@ -73,7 +73,7 @@ Authorization: Basic YXRyZXVzOjEyMzQ=
 ### 어드민이 사용자 ID 1번의 금 잔고 조회 (http caching)
 GET http://localhost:8080/users/1/golds
 Authorization: Basic YXRyZXVzOjEyMzQ=
-If-None-Match: "5"
+If-None-Match: "12"
 
 ### 어드민이 사용자 ID 1번의 금을 소모시킨다.
 POST http://localhost:8080/users/1/golds/consume
@@ -81,5 +81,14 @@ Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
-  "amount" : "3600"
+  "amount" : "6000"
 }
+
+
+### 어드민이 리딤코드를 조회한다.
+GET http://localhost:8080/redeemcodes
+Authorization: Basic YXRyZXVzOjEyMzQ=
+
+### 어드민이 리딤코드를 페이징 조회한다.
+GET http://localhost:8080/redeemcodes?page=1&perPage=2
+Authorization: Basic YXRyZXVzOjEyMzQ=
