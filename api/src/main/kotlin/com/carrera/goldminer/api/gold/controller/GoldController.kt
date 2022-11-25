@@ -2,11 +2,11 @@ package com.carrera.goldminer.api.gold.controller
 
 import com.carrera.goldminer.api.common.extension.ControllerExtension
 import com.carrera.goldminer.api.common.response.SingleResponse
+import com.carrera.goldminer.api.gold.request.ChargingGoldWithCodeRequest
 import com.carrera.goldminer.api.gold.request.ConsumeGoldRequest
 import com.carrera.goldminer.api.gold.service.GoldService
 import com.carrera.goldminer.api.gold.viewmodel.CurrentGoldViewModel
 import com.carrera.goldminer.api.gold.viewmodel.RedeemResultViewModel
-import com.carrera.goldminer.api.gold.request.ChargingGoldWithCodeRequest
 import com.carrera.goldminer.api.user.service.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize

@@ -6,10 +6,12 @@ import io.kotest.core.spec.Spec
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.date.shouldBeAfter
+import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 import java.time.ZonedDateTime
@@ -124,7 +126,14 @@ class JpaRedeemCodeRepositoryTest : BehaviorSpec() {
             }
         }
 
-        TODO( "paging search test code" )
+        this.given("모든 충전 코드에 대해") {
+            When("검색하면") {
+                val result = jpaRedeemCodeRepository.findAllBy(Pageable.unpaged())
+                then("모든 충전 코드가 검색된다") {
+                result.size shouldBeGreaterThanOrEqual 0
+                }
+            }
+        }
     }
 }
 

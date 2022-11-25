@@ -92,7 +92,7 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
             expiredBy = aWeekBefore
         ),
         RedeemCode(
-            id = 5,
+            id = 6,
             code = "A4TV7TGBH3",
             includedChargedGold = ChargedGold(GoldAmount(400), aWeekBefore),
             expiredBy = aWeekBefore,
