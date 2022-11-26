@@ -16,7 +16,7 @@ POST http://localhost:8080/users/1/golds/earn-by-redeem
 Content-Type: application/json
 
 {
-  "code" : "CVOAX0Y36Z"
+  "code": "CVOAX0Y36Z"
 }
 
 ### 로그인 하지 않은 사용자가 사용자 ID 1번의 금 잔고 조회
@@ -31,7 +31,7 @@ POST http://localhost:8080/users/1/golds/consume
 Content-Type: application/json
 
 {
-  "amount" : "6000"
+  "amount": "6000"
 }
 
 

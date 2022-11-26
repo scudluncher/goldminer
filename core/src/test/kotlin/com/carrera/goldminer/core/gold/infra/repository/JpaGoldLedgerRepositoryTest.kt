@@ -79,7 +79,7 @@ class JpaGoldLedgerRepositoryTest : BehaviorSpec() {
                     result.size shouldNotBe 0
                     result.first().chargedGoldExpiredBy shouldBeBefore result.last().chargedGoldExpiredBy
                     result.all { it.chargedGoldAmount > it.usedGoldAmount } shouldBe true
-                    result.all { it.userId == userId} shouldBe true
+                    result.all { it.userId == userId } shouldBe true
                 }
             }
         }

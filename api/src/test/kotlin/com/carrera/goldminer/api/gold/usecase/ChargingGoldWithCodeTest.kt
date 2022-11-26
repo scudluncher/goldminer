@@ -32,7 +32,8 @@ class ChargingGoldWithCodeTest : BehaviorSpec({
                 result.changedGold shouldBe redeemCode?.includedChargedGold?.gold
                 result.expiredBy shouldBe redeemCode?.includedChargedGold?.expiredBy
 
-                val afterGoldAmountTotal = goldLedgerRepository.findValidOneByUserIdOrderByExpired(userId).usableAmountAsLong()
+                val afterGoldAmountTotal =
+                    goldLedgerRepository.findValidOneByUserIdOrderByExpired(userId).usableAmountAsLong()
                 afterGoldAmountTotal - beforeGoldAmountTotal shouldBe redeemCode?.includedChargedGold?.gold?.amount
 
                 val afterGoldBalance = goldBalanceRepository.findByUserId(userId)

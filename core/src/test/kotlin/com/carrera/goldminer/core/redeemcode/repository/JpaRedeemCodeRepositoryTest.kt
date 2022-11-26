@@ -130,7 +130,7 @@ class JpaRedeemCodeRepositoryTest : BehaviorSpec() {
             When("검색하면") {
                 val result = jpaRedeemCodeRepository.findAllBy(Pageable.unpaged())
                 then("모든 충전 코드가 검색된다") {
-                result.size shouldBeGreaterThanOrEqual 0
+                    result.size shouldBeGreaterThanOrEqual 0
                 }
             }
         }

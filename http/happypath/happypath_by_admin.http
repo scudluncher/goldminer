@@ -42,7 +42,7 @@ Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
-  "code" : "CVOAX0Y36Z"
+  "code": "CVOAX0Y36Z"
 }
 
 ### 어드민이 사용자 ID 1번의 금 잔고 조회
@@ -60,7 +60,7 @@ Authorization: Basic YXRyZXVzOjEyMzQ=
 Content-Type: application/json
 
 {
-  "amount" : "6000"
+  "amount": "6000"
 }
 
 

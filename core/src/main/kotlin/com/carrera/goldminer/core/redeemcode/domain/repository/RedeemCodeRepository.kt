@@ -46,7 +46,7 @@ class FakeRedeemCodeRepository : RedeemCodeRepository {
 
     override fun findAll(pagingCondition: PagingCondition): PaginatedList<RedeemCode> {
         return if (pagingCondition.page == null || pagingCondition.perPage == null) {
-            PaginatedList(redeemCodes,redeemCodes.size)
+            PaginatedList(redeemCodes, redeemCodes.size)
         } else {
             val from = (pagingCondition.page - 1) * pagingCondition.perPage
             val to = from + pagingCondition.perPage

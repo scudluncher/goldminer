@@ -9,7 +9,7 @@ Authorization: Basic a3JhdG9zOjEyMzQ=
 Content-Type: application/json
 
 {
-  "code" : "CVOAX0Y36Z"
+  "code": "CVOAX0Y36Z"
 }
 
 ### 사용자 1이 사용자 ID 1번의 금 잔고 조회
@@ -29,7 +29,7 @@ Authorization: Basic a3JhdG9zOjEyMzQ=
 Content-Type: application/json
 
 {
-  "amount" : "6000"
+  "amount": "6000"
 }
 
 

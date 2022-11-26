@@ -92,7 +92,7 @@ class CustomAccessDeniedHandler(private val objectMapper: ObjectMapper) : Access
             "FORBIDDEN",
             "금지된 접근입니다."
         )
-       setResponse(response, errorResponse)
+        setResponse(response, errorResponse)
     }
 }
 

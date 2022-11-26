@@ -20,7 +20,10 @@ import io.kotest.core.spec.style.AnnotationSpec
 import io.kotest.core.test.TestCase
 import org.mockito.ArgumentMatchers.anyLong
 import org.mockito.MockitoAnnotations
-import org.mockito.kotlin.*
+import org.mockito.kotlin.any
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.doThrow
+import org.mockito.kotlin.stub
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
@@ -51,7 +54,7 @@ class GoldControllerTest(
         setUserSecurityContext()
     }
 
-    private fun user():User {
+    private fun user(): User {
         return User(
             1,
             "kratos",

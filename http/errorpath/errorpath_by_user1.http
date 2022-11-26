@@ -24,7 +24,7 @@ Authorization: Basic a3JhdG9zOjEyMzQ=
 Content-Type: application/json
 
 {
-  "amount" : "6000"
+  "amount": "6000"
 }
 
 ### 사용자 1이 충전코드를 조회 하려 하면 에러발생
