@@ -12,29 +12,30 @@
 * kotest, mockkito
 
 ## 실행 방법
+* ApiApplication 실행
 
 ```
 ./gradlew bootRun
 ```
 
-## Test 실행
+## Test 코드 실행
 
 ```
 ./gradlew test
 ```
 
-## Test 영역
+## Test 코드 영역
 
 * Controller, Controller advice unit test
 * Domain layer use case test with FakeRepository
 * Infra layer(Spring Data JPA)
 
-## Happy path 사용
+## Happy path 실제 구동
 
 * /http/happypath 디렉토리의 http 이용
   * 사용자 context 변경 시 logout 을 꼭 해주세요!
 
-## Error path 사용
+## Error path 실제 구동
 
 * /http/errorpath 디렉토리의 http 이용
   * 사용자 context 변경 시 logout 을 꼭 해주세요!
@@ -74,7 +75,7 @@
 * 영역간 의존성을 domain 을 바라보는 방향으로 (domain은 다른 영역으로의 의존성 없도록)
     * request 영역 -> domain
     * infra 영역 -> domain
-* multi module 사용 (api, core)
+* multi module 사용 (api -> core)
 * 충전 코드의 중복 활성화 방지를 위해 낙관적 락 사용
 
 ## 주요 검증
