@@ -1,3 +1,6 @@
+###
+POST http://localhost:8080/logout
+
 ### 사용자 1 계정정보 kratos /1234 (id = 1)
 
 ### 사용자 1이 사용자 ID 1번에게 redeem code 를 활성하여 금을 충전한다.

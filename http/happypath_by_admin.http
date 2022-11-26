@@ -1,3 +1,6 @@
+###
+POST http://localhost:8080/logout
+
 ### 어드민 계정정보 atreus/1234 (id = 4)
 
 ### 어드민이 정상 충전코드를 발급한다.

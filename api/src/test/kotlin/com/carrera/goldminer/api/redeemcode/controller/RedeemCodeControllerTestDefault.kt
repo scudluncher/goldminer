@@ -55,7 +55,7 @@ class RedeemCodeControllerTestDefault(
     private val aWeekBefore = ZonedDateTime.now().minusWeeks(1)
 
     @Test
-    fun issueRedeemCodeSuccess() {
+    fun 이슈코드_어드민_정상발급() {
         val amount = 10000L
         val goldExpiredBy = aMonthLater
         val codeExpiredBy = aMonthLater
@@ -93,7 +93,7 @@ class RedeemCodeControllerTestDefault(
     }
 
     @Test
-    fun issueRedeemCodeFailedDueToWrongExpired() {
+    fun 만기_과거로_지정하여_발급실패() {
         val amount = 10000L
         val goldExpiredBy = aWeekBefore
         val codeExpiredBy = aWeekBefore
@@ -115,7 +115,7 @@ class RedeemCodeControllerTestDefault(
     }
 
     @Test
-    fun issueRedeemCodeFailedDueToGoldExpiredIsEarlierThanCodeExpired() {
+    fun 코드만기가_골드만기보다_길게_설정_발급실패() {
         val amount = 10000L
         val goldExpiredBy = aWeekLater
         val codeExpiredBy = twoWeeksLater
@@ -137,7 +137,7 @@ class RedeemCodeControllerTestDefault(
     }
 
     @Test
-    fun retrieveRedeemCodes() {
+    fun 코드전체조회() {
         val amount = 10000L
         val goldExpiredBy = aMonthLater
         val codeExpiredBy = aMonthLater

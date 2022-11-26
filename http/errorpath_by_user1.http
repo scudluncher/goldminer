@@ -1,3 +1,7 @@
+###
+POST http://localhost:8080/logout
+
+
 ### 사용자 1 계정정보 kratos /1234 (id = 1)
 ### 사용자 1이 충전코드를 발급 하려 하면 에러 발생
 POST http://localhost:8080/admin/redeemcodes

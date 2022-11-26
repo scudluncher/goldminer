@@ -45,6 +45,8 @@ class SecurityConfig(private val objectMapper: ObjectMapper) {
             .antMatchers("/users/**").hasAnyRole("ADMIN", "USER")
             .anyRequest().authenticated()
             .and()
+            .logout()
+            .and()
             .exceptionHandling()
             .accessDeniedHandler(CustomAccessDeniedHandler(objectMapper))
             .authenticationEntryPoint { _, response, _ ->

@@ -1,3 +1,5 @@
+###
+POST http://localhost:8080/logout
 
 ### 로그인 하지 않은 사용자가 정상 충전코드를 발급한다.
 POST http://localhost:8080/admin/redeemcodes

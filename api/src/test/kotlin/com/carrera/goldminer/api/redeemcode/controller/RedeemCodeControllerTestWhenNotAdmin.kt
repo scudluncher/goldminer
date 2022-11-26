@@ -14,12 +14,13 @@ import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 @WebMvcTest(RedeemCodeController::class)
 @Import(SecurityConfig::class)
-class RedeemCodeControllerTestAuthority(
+class RedeemCodeControllerTestWhenNotAdmin(
     private val mockMvc: MockMvc,
     @MockBean
     private val redeemCodeService: RedeemCodeService,
@@ -31,9 +32,9 @@ class RedeemCodeControllerTestAuthority(
 
     @Test
     @WithMockUser
-    fun issueRedeemCodeByUser() {
+    fun 일반유저_발급_실패() {
         mockMvc.perform(
-            get("/admin/redeemcodes")
+            post("/admin/redeemcodes")
                 .with(csrf())
         )
             .andExpect(status().isForbidden)
@@ -42,9 +43,9 @@ class RedeemCodeControllerTestAuthority(
 
     @Test
     @WithAnonymousUser
-    fun issueRedeemCodeByAnonymousUser() {
+    fun 비로그인유저_발급_실패() {
         mockMvc.perform(
-            get("/admin/redeemcodes")
+            post("/admin/redeemcodes")
                 .with(csrf())
         )
             .andExpect(status().isForbidden)
@@ -53,7 +54,7 @@ class RedeemCodeControllerTestAuthority(
 
     @Test
     @WithMockUser
-    fun retrieveRedeemCodesByUser() {
+    fun 일반유저_조회_실패() {
         mockMvc.perform(
             get("/admin/redeemcodes")
                 .with(csrf())
@@ -64,7 +65,7 @@ class RedeemCodeControllerTestAuthority(
 
     @Test
     @WithAnonymousUser
-    fun retrieveRedeemCodesByAnonymousUser() {
+    fun 비로그인유저_조회_실패() {
         mockMvc.perform(
             get("/admin/redeemcodes")
                 .with(csrf())
