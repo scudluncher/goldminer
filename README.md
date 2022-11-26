@@ -32,10 +32,12 @@
 ## Happy path 사용
 
 * /http/happypath 디렉토리의 http 이용
+  * 사용자 context 변경 시 logout 을 꼭 해주세요!
 
 ## Error path 사용
 
 * /http/errorpath 디렉토리의 http 이용
+  * 사용자 context 변경 시 logout 을 꼭 해주세요!
 
 ## 구현 범위
 
