@@ -41,25 +41,26 @@ class SecurityConfig(private val objectMapper: ObjectMapper) {
     @Bean
     fun filterChain(httpSecurity: HttpSecurity): SecurityFilterChain {
         httpSecurity.authorizeHttpRequests()
+            .antMatchers("/h2-console/**").permitAll()
             .antMatchers("/admin/**").hasRole("ADMIN")
             .antMatchers("/users/**").hasAnyRole("ADMIN", "USER")
             .anyRequest().authenticated()
             .and()
             .logout()
             .and()
+            .httpBasic()
+            .and()
             .exceptionHandling()
             .accessDeniedHandler(CustomAccessDeniedHandler(objectMapper))
             .authenticationEntryPoint { _, response, _ ->
                 val errorResponse = ErrorResponse(
-                    "401",
+                    "AUTHENTICATION_REQUIRED",
                     "로그인이 필요합니다."
                 )
                 response.contentType = "application/json;charset=UTF-8"
                 response.status = HttpStatus.FORBIDDEN.value()
                 response.writer.write(objectMapper.writeValueAsString(errorResponse))
             }
-            .and()
-            .httpBasic()
             .and()
             .headers().frameOptions().disable()
             .and()
