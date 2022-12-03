@@ -21,12 +21,9 @@ class GoldLedger(
         )
     }
 
-    fun partiallyConsumed(lastResidual: Long): GoldLedger {
-        val remainingGold = chargedGold.gold - usedGold
+    fun deductPartially(amount: GoldAmount): GoldLedger {
         return copy(
-            usedGold = usedGold
-                    + remainingGold
-                    + GoldAmount(lastResidual)
+            usedGold = usedGold + amount
         )
     }
 
