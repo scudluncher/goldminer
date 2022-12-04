@@ -25,9 +25,9 @@ class RedeemCodeIssuing(
 
     private fun notDuplicatedRandomCode(): String {
         val randomCode = randomCode()
-        return redeemCodeRepository.findByCode(randomCode)?.let {
-            notDuplicatedRandomCode()
-        } ?: randomCode
+        return redeemCodeRepository.findByCode(randomCode)
+            ?.let { notDuplicatedRandomCode() }
+            ?: randomCode
     }
 }
 
@@ -40,6 +40,8 @@ class RedeemCodeIssueValue(
 fun randomCode(): String {
     val charPool: List<Char> = ('A'..'Z') + ('0'..'9')
 
-    return (1..10).map { Random.nextInt(0, charPool.size).let { charPool[it] } }
+    return (1..10).map {
+        Random.nextInt(0, charPool.size).let { charPool[it] }
+    }
         .joinToString("")
 }

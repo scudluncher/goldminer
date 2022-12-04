@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect
 import com.fasterxml.jackson.annotation.PropertyAccessor
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.SingletonSupport
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
@@ -24,7 +26,9 @@ class CoreApplication {
                 SerializationFeature.WRITE_DATES_AS_TIMESTAMPS
             )
             .visibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
-            .modulesToInstall(KotlinModule(nullIsSameAsDefault = true))
+            .modulesToInstall(KotlinModule.Builder()
+                .configure(KotlinFeature.NullIsSameAsDefault, enabled = true)
+                .build())
             .build()
     }
 }

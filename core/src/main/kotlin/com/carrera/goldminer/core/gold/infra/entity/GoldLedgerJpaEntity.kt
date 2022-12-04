@@ -37,8 +37,7 @@ class GoldLedgerJpaEntity(
             this.id,
             this.userId,
             ChargedGold(GoldAmount(chargedGoldAmount), chargedGoldExpiredBy),
-            GoldAmount(usedGoldAmount
-            )
+            GoldAmount(usedGoldAmount)
         )
     }
 }
