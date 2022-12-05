@@ -56,8 +56,13 @@ class ConsumingGold(
             return if (residual == 0L) {
                 allConsumedLedgers.map { it.allConsumed() }
             } else {
+                val lastLedger = goldLedgers[allConsumedLedgers.size]
+                val partialAmount = lastLedger.let {
+                    it.chargedGold.gold - it.usedGold + GoldAmount(residual)
+                }
+
                 allConsumedLedgers.map { it.allConsumed() } +
-                        goldLedgers[allConsumedLedgers.size].partiallyConsumed(residual)
+                        lastLedger.deductPartially(partialAmount)
             }
         }
 

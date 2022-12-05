@@ -10,9 +10,7 @@ class QueryingCurrentGoldOf(
 ) {
     fun execute(): CurrentGold {
         return goldBalanceRepository.findByUserId(userId)
-            ?.let {
-                CurrentGold(it.gold, it.version)
-            }
+            ?.let { CurrentGold(it.gold, it.version) }
             ?: CurrentGold(GoldAmount(0), 0)
     }
 }
